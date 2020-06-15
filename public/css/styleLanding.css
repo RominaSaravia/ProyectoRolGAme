@@ -1,0 +1,48 @@
+*{
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0;
+  font-family:monospace;
+}
+body{
+  background-color: rgb(87, 87, 121);
+}
+label{
+  background-color:rgb(179, 179, 235);
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+input{
+  background-color:rgb(199, 199, 199);
+}
+
+#result {
+  padding:1rem 0;
+  font-size: 1rem;
+}
+a{
+  margin: 0.5rem auto;
+  padding:0.2rem 1rem;
+  font-style: none;
+  text-decoration: none;
+  color: rgb(227, 208, 252);
+  border-radius: 1rem;
+  background-color:rgb(120, 120, 216);
+}
+button{
+  cursor: pointer;
+  margin: 1rem auto;
+  background-color: rgb(179, 179, 235);
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+.form-input {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 2rem;
+  width: 40%;
+  background-color:rgb(179, 179, 235) ;
+  box-shadow: 0.5rem 0.5rem 0.5rem 0 rgb(73, 0, 73);
+}

@@ -1,0 +1,86 @@
+[
+  {
+  "id":"0A",
+  "narrative":"Comienzo de la etapa 1 ,<br/>puedes buscar algo útil, a ver que encunetras.O usar el encendedor que tienes en la mano",
+  "optionA":"Buscar",
+  "optionB":"Usar",
+  "gameFinal": false,
+  "dialogASuccess":"Encuentras una nota que dice incoherencias e insultos hacia una persona... ",
+  "dialogAFail":"No encuentras nada ladoA",
+  "dialogBSuccess":"Usas el encendedor, descubres que estas en una sala,",
+  "dialogBFail":"Intentas usar un encendedor pero no funciona"
+  },{
+  "id":"0B",
+  "narrative":"Comienzo de la etapa 1 ,<br/>puedes buscar algo útil, a ver que encunetras.O usar el encendedor que tienes en la mano",
+  "optionA":"Buscar",
+  "optionB":"Usar",
+  "gameFinal": false,
+  "dialogASuccess":"Encuentras una nota que dice incoherencias e insultos hacia una persona... ",
+  "dialogAFail":"No encuentras nada lado B",
+  "dialogBSuccess":"Usas el encendedor, descubres que estas en una sala,",
+  "dialogBFail":"Intentas usar un encendedor pero no funciona"
+  },{
+  "id":"1A",
+  "narrative":"Comienzo de la etapa 2,<br/> Salió todo bien, sigues tu camino. Podrías recorrer las habitaciones, o intentar encontrarte con alguien",
+  "optionA":"Recorrer",
+  "optionB":"Gritar ayuda",
+  "gameFinal": false,
+  "dialogASuccess":"Recorres las habitaciones, y te encuentras con un lugar que parece una casa de muñecas",
+  "dialogAFail":"Recorres el lugar, pero en derrepentes te desorientas, tienes miedo y vuelves corriendo a la sala donde despertaste",
+  "dialogBSuccess":"Gritas ayuda, esperas que alguien responda. Crees escuchar una respuesta, y vas en busca de aquello que respondió",
+  "dialogBFail":"Gritas varias veces pero nadie responde, solo escuchas ruidos de muebles viejos y el viento"
+  },{  
+  "id":"1B",
+  "narrative":"Comienzo de la etapa 2,<br/> Salió todo mal. Estas a oscuras, no sabes donde estas. LO unico que quieres es salir. Puedes intentar abrir las ventanas o recorrer el lugar",
+  "optionA":"Ventana",
+  "optionB":"Recorrer",
+  "gameFinal": false,
+  "dialogASuccess":"Ventana sucess",
+  "dialogAFail":"No puedes abrir la ventana, la madera vieja ya dejó inutil el mecanismo",
+  "dialogBSuccess":"Recorres el lugar",
+  "dialogBFail":"Recorres el lugar, pero en derrepentes te desorientas, tienes miedo y vuelves corriendo a la sala donde despertaste"
+},{
+  "id":"2A",
+  "narrative":"Comienzo de la etapa 3,<br/> Salió todo bien, sigues tu camino. Podrías recorrer las habitaciones, o intentar encontrarte con alguien",
+  "optionA":"Usar",
+  "optionB":"Hablar",
+  "gameFinal": false,
+  "dialogASuccess":"Recorres las habitaciones, y te encuentras con un lugar que parece una casa de muñecas",
+  "dialogAFail":"Recorres el lugar, pero en derrepentes te desorientas, tienes miedo y vuelves corriendo a la sala donde despertaste",
+  "dialogBSuccess":"Gritas ayuda, esperas que alguien responda. Crees escuchar una respuesta, y vas en busca de aquello que respondió",
+  "dialogBFail":"Gritas varias veces pero nadie responde, solo escuchas ruidos de muebles viejos y el viento"
+  },{  
+  "id":"2B",
+  "narrative":"Comienzo de la etapa 3,<br/> Salió todo mal. Estas a oscuras, no sabes donde estas. LO unico que quieres es salir. Puedes intentar abrir las ventanas o recorrer el lugar",
+  "optionA":"Correr",
+  "optionB":"Gritar",
+  "gameFinal": false,
+  "dialogASuccess":"Ventana sucess",
+  "dialogAFail":"No puedes abrir la ventana, la madera vieja ya dejó inutil el mecanismo",
+  "dialogBSuccess":"Recorres el lugar",
+  "dialogBFail":"Recorres el lugar, pero en derrepentes te desorientas, tienes miedo y vuelves corriendo a la sala donde despertaste"
+},{
+  "id":"3A",
+  "narrative":"Comienzo de la etapa 4,<br/> Salió todo bien, sigues tu camino. Podrías recorrer las habitaciones, o intentar encontrarte con alguien",
+  "optionA":"Usar",
+  "optionB":"Hablar",
+  "gameFinal": true,
+  "finalText": "<br/><h4 style='color:ivory' >Llegaste al final de la historia</h4></br><p>Proximamente se agregaran más situaciones</p>",
+  "dialogASuccess":"Recorres las habitaciones, y te encuentras con un lugar que parece una casa de muñecas",
+  "dialogAFail":"Recorres el lugar, pero en derrepentes te desorientas, tienes miedo y vuelves corriendo a la sala donde despertaste",
+  "dialogBSuccess":"Gritas ayuda, esperas que alguien responda. Crees escuchar una respuesta, y vas en busca de aquello que respondió",
+  "dialogBFail":"Gritas varias veces pero nadie responde, solo escuchas ruidos de muebles viejos y el viento"
+  },{  
+  "id":"3B",
+  "narrative":"Comienzo de la etapa 4,<br/> Salió todo mal. Estas a oscuras, no sabes donde estas. LO unico que quieres es salir. Puedes intentar abrir las ventanas o recorrer el lugar",
+  "optionA":"Correr",
+  "optionB":"Gritar",
+  "gameFinal": true,
+  "finalText": "<br/><h4 style='color:ivory' >Llegaste al final de la historia</h4><p>Proximamente se agregaran más situaciones</p>",
+  "dialogASuccess":"Ventana sucess",
+  "dialogAFail":"No puedes abrir la ventana, la madera vieja ya dejó inutil el mecanismo",
+  "dialogBSuccess":"Recorres el lugar",
+  "dialogBFail":"Recorres el lugar, pero en derrepentes te desorientas, tienes miedo y vuelves corriendo a la sala donde despertaste"
+}
+
+]

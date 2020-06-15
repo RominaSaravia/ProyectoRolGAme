@@ -1,0 +1,130 @@
+
+let stageCount = 0;
+let userOption = "A";
+let idProgres = `${stageCount}${userOption}`;
+
+const mainPanel = document.getElementById("botones");
+const userAction = document.getElementById("user-action");
+const newOptionA = document.getElementById("A");
+const newOptionB = document.getElementById("B");
+let gameScript;
+
+
+const ajaxRequest = new XMLHttpRequest();
+
+ajaxRequest.addEventListener("load", function() {
+  if (this.status == 200) {
+    gameScript = JSON.parse(this.responseText);
+  }else {
+    console.log("ERROR")
+  }
+})
+
+setTimeout(()=>{
+buttonDisplay();
+},500)
+
+function buttonDisplay () {
+
+  if (newOptionA.hidden === true && newOptionB.hidden === true) {
+    newOptionA.hidden = false;
+    newOptionB.hidden = false;
+  };
+
+  const foundStage = gameScript.find(item => item.id == idProgres);
+
+  if (foundStage.gameFinal === true) {
+    newOptionA.hidden = true;
+    newOptionB.hidden = true;
+    const newDialog = document.createElement("div");
+    newDialog.innerHTML = foundStage.finalText;
+    newDialog.classList.add("action-dialog")
+    userAction.appendChild(newDialog);
+    return;
+  }
+  
+  newOptionA.textContent = foundStage.optionA;
+  newOptionB.textContent = foundStage.optionB;
+  
+  showNarrative();
+
+};
+
+function pressA() {
+  userOption = "A";
+  idProgres = `${stageCount}${userOption}`;
+  console.log(stageCount + userOption);
+  
+  let foundStage = gameScript.find(item => item.id.includes(idProgres));
+  
+  console.log("se tiran los dados")  
+  funcDados();
+  if (randNum > 3) {
+    const newDialog = document.createElement("p");
+    newDialog.textContent = foundStage.dialogASuccess;
+    newDialog.classList.add("action-dialog")
+    userAction.appendChild(newDialog);
+    stageCount++;
+    idProgres = `${stageCount}${userOption}`;
+    console.log(stageCount + userOption);
+    
+  }else {
+    const newDialog = document.createElement("p");
+    newDialog.textContent = foundStage.dialogAFail;
+    newDialog.classList.add("action-dialog")
+    userAction.appendChild(newDialog);
+    stageCount++;
+    idProgres = `${stageCount}${userOption}`;
+    console.log(stageCount + userOption);
+  };
+  
+  buttonDisplay ()
+};
+
+function pressB() {
+  userOption = "B";
+  idProgres = `${stageCount}${userOption}`;
+  
+  let foundStage = gameScript.find(item => item.id.includes(idProgres));
+  
+  
+  funcDados();
+  if (randNum > 3) {
+    const newDialog = document.createElement("p");
+    newDialog.textContent = foundStage.dialogBSuccess;
+    newDialog.classList.add("action-dialog")
+    userAction.appendChild(newDialog);
+    stageCount++;
+    idProgres = `${stageCount}${userOption}`;
+    console.log(stageCount + userOption);
+    
+  }else {
+    const newDialog = document.createElement("p");
+    newDialog.textContent = foundStage.dialogBFail;
+    newDialog.classList.add("action-dialog")
+    userAction.appendChild(newDialog);
+    stageCount++;
+    idProgres = `${stageCount}${userOption}`;
+    console.log(stageCount + userOption);
+  };
+  
+  buttonDisplay ()
+};
+
+
+// Tirada de dados de 6 caras, 
+function funcDados () {
+  randNum = Math.floor(Math.random() * 6) + 1;    
+};
+
+function showNarrative () {
+  const foundStage = gameScript.find(item => item.id == idProgres);
+  const newDialog = document.createElement("p");
+  newDialog.classList.add("browser-dialog")
+  newDialog.innerHTML = foundStage.narrative;
+  userAction.appendChild(newDialog);
+};
+
+
+ajaxRequest.open("GET", "/script");
+ajaxRequest.send();

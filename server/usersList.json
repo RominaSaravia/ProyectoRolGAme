@@ -1,0 +1,30 @@
+[
+{
+  "gameState":"0A",
+  "id":"1",
+  "username":"laura",
+  "surname": "Hoyos",
+  "age":22
+},
+{
+  "gameState":"0A",
+  "id":"2",
+  "username":"Romina",
+  "surname": "Fernandez",
+  "age":22
+},
+{
+  "gameState":"0A",
+  "id":"3",
+  "username":"Paula",
+  "surname": "Garcia",
+  "age":22
+},
+{
+  "gameState":"0A",
+  "id":"4",
+  "username":"luna",
+  "surname": "Mesh",
+  "age":22
+}
+]

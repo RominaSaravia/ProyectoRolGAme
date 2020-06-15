@@ -1,0 +1,110 @@
+*{
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0;
+  font-family: monospace;
+}
+body {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+}
+
+.mid-panel {
+  min-height: max-content;
+  display: flex;
+  height: 80%;
+}
+
+header {
+  height: 10vh;
+  background-color: rgb(123, 62, 255);
+  padding:1rem;
+  border-bottom: 0.2rem solid rgb(62, 26, 139) ;
+}
+
+header h3 {
+  color: rgb(0, 30, 68);
+
+}
+.main-section{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: stretch;
+  background-color: rgb(255, 255, 255);
+  width: 75%;
+  height: 80vh;
+
+}
+
+.show-action{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: stretch;
+/*Config Scroll*/
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  
+  width: 75%;
+  max-height: 75%;
+
+}
+
+.action-dialog {
+  padding: 0 1rem;
+  margin: 0 0.5rem;
+  color: rgb(226, 62, 255);
+  font-size: 1.2rem;
+  scroll-snap-align: start;
+  background-color: rgba(215, 172, 255, 0.445);
+}
+.browser-dialog {
+  padding: 0 1rem;
+  margin: 0 0.5rem;
+  color: rgb(123, 62, 255);
+  scroll-snap-align: start;
+
+  background-color: rgba(215, 172, 255, 0.445);
+}
+.player-dialog {
+  padding: 0 1rem;
+  margin: 0 0.5rem;
+  color: rgb(0, 0, 0);
+  scroll-snap-align: start;
+
+  background-color: rgba(215, 172, 255, 0.445);
+}
+.botones {
+  height: 10vh;
+  width: 100%;;
+  border-top: 0.2rem solid rgb(62, 26, 139);
+  padding: 1rem;
+  display: inline-flex;
+  background-color: rgb(123, 62, 255);
+}
+button{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 500;
+  font-stretch: ultra-expanded;
+  font-size: 1rem;
+  margin: 0 0.5rem;
+  border-radius: 1rem;
+  border-style: none;
+  background-color: rgb(227, 254, 255);
+  padding: 0.5rem;
+  color:black;
+}
+
+.side-panel {
+  width: 25%;
+  background-color: rgb(187, 140, 226);
+  padding:1rem
+
+}
