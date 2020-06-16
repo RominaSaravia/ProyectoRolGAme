@@ -286,7 +286,7 @@ function asignTurn(cbTurn) {
 }
 // Timer, se le da 5'' para que realice una acción, y se pasa al siguiente jugador
 function turnoTimer(callBack) {
-  console.log(`Turno de userList[${userList[playerTurn].username}]: TIMER, el jugador tiene 5 segundos`);
+  console.log(`Turno de ${userList[playerTurn].username} TIMER, el jugador tiene 15 segundos`);
 
   const newDialog = document.createElement("p");
   newDialog.textContent = `Turno de: ${userList[playerTurn].username}`;

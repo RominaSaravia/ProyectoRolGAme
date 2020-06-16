@@ -116,7 +116,6 @@ app.get("/scriptdb", (req,res) => {
       res.json(gameScript);
     }else {
       res.json(gameScript.find(item => item.id.includes(req.query.idProgres) ));
-      console.log()
     }
   });
 
