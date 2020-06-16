@@ -2,6 +2,7 @@
 Elige tu propia aventura
 
 ***
+Requerimientos: node.js,
 
 ____Base de datos: Mongo Atlas____
 
@@ -46,7 +47,7 @@ Los botones se renderizan dinamicamente, dependiendo el camino.
 
 Indica si este camino es un ending
 ```javascript
-"gameFinal": false, 
+"gameFinal": false || "gameFinal": true
 
 ```
 Las distintas respuestas, segun si se apretó el boton A o B.
