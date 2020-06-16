@@ -27,6 +27,7 @@ ____Base de datos: Mongo Atlas____
   "optionA":"Buscar",
   "optionB":"Usar",
   "gameFinal": false,
+  "finalText": "Logras llegar al final de esta historia, gracias por jugar"
   "dialogASuccess":"Encuentras una nota que dice incoherencias e insultos hacia una persona... ",
   "dialogAFail":"No encuentras nada ladoA",
   "dialogBSuccess":"Usas el encendedor, descubres que estas en una sala,",
@@ -45,9 +46,10 @@ Los botones se renderizan dinamicamente, dependiendo el camino.
 "optionB":"Usar",
 ```
 
-Indica si este camino es un ending
+Indica si este camino es un ending, con su texto final correspondiente
 ```javascript
 "gameFinal": false || "gameFinal": true
+"finalText": "Logras llegar al final de esta historia, gracias por jugar"
 
 ```
 Las distintas respuestas, segun si se apretó el boton A o B.
