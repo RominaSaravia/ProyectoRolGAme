@@ -1,5 +1,5 @@
 // control turnos y rondas
-const totalRound = 4;
+const totalRound = 10;
 let numRound = 0;
 let numTurn = 0;
 let turnsDone = 0;
@@ -20,6 +20,10 @@ const userAction = document.getElementById("user-action");
 const newOptionA = document.getElementById("A");
 const newOptionB = document.getElementById("B");
 
+const playList = document.getElementById("usersPlaying");
+const playPanel = document.getElementById("show-players");
+
+
 //Inicio del juego, se hace un get a /users.
 // Una vez se tenga la informacion empieza la ronda
 window.addEventListener("load", () => {
@@ -29,8 +33,9 @@ window.addEventListener("load", () => {
   requestUser.addEventListener("load", function () {
     if (this.status == 200) {
       userList = JSON.parse(this.responseText);
-      console.log(`LLego la userList`);
+      console.log("Llego la lista de jugadores");
       Round();
+      showPlayers();
     } else {
       console.log("ERROR");
     }
@@ -48,11 +53,8 @@ function buttonDisplay() {
 
   buttonRequest.addEventListener("load", function () {
     if (this.status == 200) {
-      console.log(this.responseText)
       let userStage = JSON.parse(this.responseText);
-      console.log(userStage);
 
-      
           if (newOptionA.hidden === true && newOptionB.hidden === true) {
             newOptionA.hidden = false;
             newOptionB.hidden = false;
@@ -88,6 +90,10 @@ function buttonDisplay() {
 // Cuando se apreta el boton el idProgres se actualiza a la decision del usuario 
 // y se actualiza el fragmento de script.js con el nuevo camino (ajaxrequest)
 function pressA() {
+  if (newOptionA.hidden === false && newOptionB.hidden === false) {
+    newOptionA.hidden = true;
+    newOptionB.hidden = true;
+  };
   // Se actualiza el idProgress, camino elegido por el jugador
   // Se realiza un request con el nuevo camino
   userOption = "A";
@@ -114,10 +120,7 @@ function pressA() {
         idProgres = `${stageCount}${userOption}`;
 
         console.log(stageCount + userOption);
-        if (newOptionA.hidden === false && newOptionB.hidden === false) {
-          newOptionA.hidden = true;
-          newOptionB.hidden = true;
-        };
+
         //Si los dados san fallo
       } else {
         //Se crea la respuesta a la accion elegida
@@ -128,10 +131,7 @@ function pressA() {
         stageCount++;
         idProgres = `${stageCount}${userOption}`;
         console.log(stageCount + userOption);
-        if (newOptionA.hidden === false && newOptionB.hidden === false) {
-          newOptionA.hidden = true;
-          newOptionB.hidden = true;
-        };
+
       };
 
 
@@ -147,6 +147,11 @@ function pressA() {
 };
 
 function pressB() {
+
+  if (newOptionA.hidden === false && newOptionB.hidden === false) {
+    newOptionA.hidden = true;
+    newOptionB.hidden = true;
+  };
   // Se actualiza el segundo valor de idProgress,
   // Se realiza un request con el nuevo camino
   userOption = "B";
@@ -172,10 +177,6 @@ function pressB() {
         stageCount++;
         idProgres = `${stageCount}${userOption}`;
 
-        if (newOptionA.hidden === false && newOptionB.hidden === false) {
-          newOptionA.hidden = true;
-          newOptionB.hidden = true;
-        };
         // Si los dados dan fallo
       } else {
         //Se crea la respuesta a la accion elegida
@@ -187,10 +188,7 @@ function pressB() {
         stageCount++;
         idProgres = `${stageCount}${userOption}`;
 
-        if (newOptionA.hidden === false && newOptionB.hidden === false) {
-          newOptionA.hidden = true;
-          newOptionB.hidden = true;
-        };
+
       };
 
     } else {
@@ -203,7 +201,6 @@ function pressB() {
   pressBRequest.send();
 
 };
-
 
 // Tirada de dados de 6 caras, 
 function funcDados() {
@@ -289,5 +286,19 @@ function turnoTimer(callBack) {
     const sumTurn = 1
     callBack(sumTurn)
 
-  }, 7000)
+  }, 10000)
+};
+
+
+function showPlayers() {
+  for (i = 0 ; i < userList.length; i++) {
+
+    const newPlayer = document.createElement("div");
+
+    newPlayer.classList.add("player-name");
+    newPlayer.innerHTML = userList[i].username;
+    playPanel.appendChild(newPlayer);
+
+  }
+
 }

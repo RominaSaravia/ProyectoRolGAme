@@ -9,12 +9,13 @@ body{
 }
 label{
   background-color:rgb(179, 179, 235);
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin: 0.5rem 0;
 }
 
 input{
   background-color:rgb(199, 199, 199);
+  padding: 0.5rem;
 }
 
 #result {
@@ -22,7 +23,8 @@ input{
   font-size: 1rem;
 }
 a{
-  margin: 0.5rem auto;
+  font-size: 1.2rem;
+  margin: 1rem auto;
   padding:0.2rem 1rem;
   font-style: none;
   text-decoration: none;
@@ -31,10 +33,11 @@ a{
   background-color:rgb(120, 120, 216);
 }
 button{
+  font-size: 1.3rem;
   cursor: pointer;
   margin: 1rem auto;
   background-color: rgb(179, 179, 235);
-  padding: 0.5rem;
+  padding: 0.7rem;
   border-radius: 1rem;
 }
 .form-input {

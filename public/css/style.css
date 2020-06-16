@@ -25,8 +25,11 @@ header {
   border-bottom: 0.2rem solid rgb(62, 26, 139) ;
 }
 
-header h3 {
-  color: rgb(0, 30, 68);
+header h2 {
+  font-variant: small-caps;
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: rgb(242, 231, 255);
 
 }
 .main-section{
@@ -59,17 +62,18 @@ header h3 {
 
 .action-dialog {
   padding: 0 1rem;
-  margin: 0 0.5rem;
+  margin: 1rem 0.5rem;
   color: rgb(226, 62, 255);
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   scroll-snap-align: start;
   background-color: rgba(215, 172, 255, 0.445);
 }
 .browser-dialog {
   padding: 0 1rem;
-  margin: 0 0.5rem;
+  margin: 1rem 0.5rem;
   color: rgb(123, 62, 255);
   scroll-snap-align: start;
+  font-size: 1.6rem;
 
   background-color: rgba(215, 172, 255, 0.445);
 }
@@ -93,18 +97,32 @@ button{
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: 500;
   font-stretch: ultra-expanded;
-  font-size: 1rem;
-  margin: 0 0.5rem;
+  font-size: 1.3rem;
+  margin: 0.5rem 0.9rem;
   border-radius: 1rem;
   border-style: none;
   background-color: rgb(227, 254, 255);
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   color:black;
 }
 
 .side-panel {
   width: 25%;
-  background-color: rgb(187, 140, 226);
+  background-color: rgb(242, 227, 255);
+
+  border-left: 4px solid rgb(165, 125, 200);
   padding:1rem
 
+}
+
+.side-panel h2 {
+  font-size: 2rem;
+}
+
+.player-name{
+  margin: 1rem -0.5rem;
+  padding: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  background-color:rgb(206, 151, 255);
 }
