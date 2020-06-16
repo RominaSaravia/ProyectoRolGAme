@@ -12,7 +12,7 @@ ____Base de datos: Mongo Atlas____
 {
   "gameState":"0A",
   "username":"Paula",
-  "gameState":"0A"
+  "password":"******"
 }
 ```
 
