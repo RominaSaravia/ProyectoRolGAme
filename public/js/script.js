@@ -55,10 +55,10 @@ function buttonDisplay() {
     if (this.status == 200) {
       let userStage = JSON.parse(this.responseText);
 
-          if (newOptionA.hidden === true && newOptionB.hidden === true) {
-            newOptionA.hidden = false;
-            newOptionB.hidden = false;
-          };
+      if (newOptionA.hidden === true && newOptionB.hidden === true) {
+        newOptionA.hidden = false;
+        newOptionB.hidden = false;
+      };
       // Una vez con la informacion del camino, se arman los botones.
       // Verifico que si el camino es un ending
       if (userStage.gameFinal === true) {
@@ -291,7 +291,7 @@ function turnoTimer(callBack) {
 
 
 function showPlayers() {
-  for (i = 0 ; i < userList.length; i++) {
+  for (i = 0; i < userList.length; i++) {
 
     const newPlayer = document.createElement("div");
 
@@ -300,5 +300,15 @@ function showPlayers() {
     playPanel.appendChild(newPlayer);
 
   }
+
+}
+
+function resetGame() {
+  numRound = 0;
+  numTurn = 0;
+  turnsDone = 0;
+
+  Round();
+  showPlayers();
 
 }

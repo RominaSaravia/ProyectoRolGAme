@@ -40,7 +40,7 @@ header h2 {
   align-items: stretch;
   background-color: rgb(255, 255, 255);
   width: 75%;
-  height: 80vh;
+  height: 78vh;
 
 }
 
@@ -86,7 +86,7 @@ header h2 {
   background-color: rgba(215, 172, 255, 0.445);
 }
 .botones {
-  height: 10vh;
+  height: 12vh;
   width: 100%;;
   border-top: 0.2rem solid rgb(62, 26, 139);
   padding: 1rem;
