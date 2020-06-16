@@ -32,28 +32,30 @@ ____Base de datos: Mongo Atlas____
   "dialogBFail":"Intentas usar un encendedor pero no funciona"
   }
 ```
+Identificador del camino especifico, camino que se le dará al jugador en caso que gameState coincida.
 ```javascript
 "id":"0A"
 ```
 
-es el identificador del camino especifico, camino que se le dará al jugador en caso que gameState coincida.
+
+Los botones se renderizan dinamicamente, dependiendo el camino.
 ```javascript
 "optionA":"Buscar",
 "optionB":"Usar",
 ```
 
-Los botones se renderizan dinamicamente, dependiendo el camino.
+Indica si este camino es un ending
 ```javascript
 "gameFinal": false, 
+
 ```
-Indica si este camino es un ending
+Las distintas respuestas, segun si se apretó el boton A o B.
 ```javascript
 "dialogASuccess":"Encuentras una nota que dice incoherencias e insultos hacia una persona... ",
 "dialogAFail":"No encuentras nada ladoA",
 "dialogBSuccess":"Usas el encendedor, descubres que estas en una sala,",
 "dialogBFail":"Intentas usar un encendedor pero no funciona"
 ```
-Las distintas respuestas, segun si se apretó el boton A o B.
 Tiene una verificacion de success y fail: Cuando se toma una decision, se tiran los dados, las dos salidas son:
 ```javascript
 numRand < 3 == fail || numRand > 3 == success
