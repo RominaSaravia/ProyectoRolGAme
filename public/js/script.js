@@ -23,6 +23,8 @@ const newOptionB = document.getElementById("B");
 const playList = document.getElementById("usersPlaying");
 const playPanel = document.getElementById("show-players");
 
+const reset = document.getElementById("resetbtn");
+
 
 //Inicio del juego, se hace un get a /users.
 // Una vez se tenga la informacion empieza la ronda
@@ -34,6 +36,11 @@ window.addEventListener("load", () => {
     if (this.status == 200) {
       userList = JSON.parse(this.responseText);
       console.log("Llego la lista de jugadores");
+
+      if (reset.hidden === true) {
+        reset.hidden = false;
+      };
+
       Round();
       showPlayers();
     } else {
@@ -304,11 +311,15 @@ function showPlayers() {
 }
 
 function resetGame() {
+  stageCount = 0;
+  userOption = "A";
+  idProgres = `${stageCount}${userOption}`;
   numRound = 0;
   numTurn = 0;
   turnsDone = 0;
 
+  userAction.innerHTML = "";
+
   Round();
-  showPlayers();
 
 }
