@@ -113,9 +113,12 @@ app.get("/scriptdb", (req,res) => {
   getData.getGameScript( gameScript => {
     // Una vez que llegaron los datos como parámetro se realiza un filtro
     if (!req.query.idProgres) {
+      console.log("Se envio sin filtros")
       res.json(gameScript);
     }else {
+      console.log("Se filtro la respuesta")
       res.json(gameScript.find(item => item.id.includes(req.query.idProgres) ));
+      console.log()
     }
   });
 

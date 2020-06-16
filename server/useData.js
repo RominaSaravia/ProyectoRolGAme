@@ -12,7 +12,7 @@ const getGameScript = (cbResult) => {
       client.close()
     }else {
       const serverGame = client.db("Proyecto");
-      const userCollection = serverGame.collection("GameData");
+      const userCollection = serverGame.collection("gameData");
 
       userCollection.find({}).toArray((err, AllData) => {
         cbResult(AllData);
@@ -31,7 +31,7 @@ const getAll = (cbResult) => {
       client.close()
     }else {
       const serverGame = client.db("Proyecto");
-      const userCollection = serverGame.collection("Users");
+      const userCollection = serverGame.collection("ConfirmUsers");
 
       userCollection.find({}).toArray((err, personList) => {
         cbResult(personList);
