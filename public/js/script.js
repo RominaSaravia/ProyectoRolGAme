@@ -42,17 +42,6 @@ window.addEventListener("load", () => {
 
 });
 
-
-// request al server con el gameScript (local)
-const ajaxRequest = new XMLHttpRequest();
-ajaxRequest.addEventListener("load", function() {
-  if (this.status == 200) {
-    gameScript = JSON.parse(this.responseText);
-  }else {
-    console.log("ERROR")
-  }
-})
-
 // Se crean los botones en cada nueva etapa con la nueva información.
 function buttonDisplay () {
   const buttonRequest = new XMLHttpRequest();
@@ -111,19 +100,26 @@ function pressA() {
     let userStage = JSON.parse(this.responseText);
     console.log("se tiran los dados")  
     funcDados();
+    //Si los dados dan exito
     if (randNum > 3) {
+      //Se crea la respuesta a la accion elegida
       const newDialog = document.createElement("p");
       newDialog.textContent = userStage.dialogASuccess;
       newDialog.classList.add("action-dialog")
       userAction.appendChild(newDialog);
+
+      //Se actualiza el primer valor de idProgres
       stageCount++;
       idProgres = `${stageCount}${userOption}`;
+
       console.log(stageCount + userOption);
       if (newOptionA.hidden === false && newOptionB.hidden === false) {
         newOptionA.hidden = true;
         newOptionB.hidden = true;
-      };  
+      }; 
+    //Si los dados san fallo
     }else {
+      //Se crea la respuesta a la accion elegida
       const newDialog = document.createElement("p");
       newDialog.textContent = userStage.dialogAFail;
       newDialog.classList.add("action-dialog")
@@ -163,8 +159,9 @@ function pressB() {
     let userStage = JSON.parse(this.responseText);
 
     funcDados();
-
+    // Si los dados dan exito
     if (randNum > 3) {
+      //Se crea la respuesta a la accion elegida
       const newDialog = document.createElement("p");
       newDialog.textContent = userStage.dialogBSuccess;
       newDialog.classList.add("action-dialog")
@@ -178,7 +175,9 @@ function pressB() {
         newOptionA.hidden = true;
         newOptionB.hidden = true;
       };  
+    // Si los dados dan fallo
     }else {
+      //Se crea la respuesta a la accion elegida
       const newDialog = document.createElement("p");
       newDialog.textContent = userStage.dialogBFail;
       newDialog.classList.add("action-dialog")
@@ -289,5 +288,5 @@ function turnoTimer(callBack) {
     const sumTurn = 1
     callBack(sumTurn)
     
-  },5000)
+  },7000)
 }
