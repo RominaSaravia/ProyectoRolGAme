@@ -5,16 +5,15 @@
   font-family:monospace;
 }
 body{
-  background-color: rgb(87, 87, 121);
+  background-color: rgb(92, 76, 129);
 }
 label{
-  background-color:rgb(179, 179, 235);
   font-size: 1.4rem;
   margin: 0.5rem 0;
 }
 
 input{
-  background-color:rgb(199, 199, 199);
+  background-color:rgb(228, 228, 228);
   padding: 0.5rem;
 }
 
@@ -30,13 +29,13 @@ a{
   text-decoration: none;
   color: rgb(227, 208, 252);
   border-radius: 1rem;
-  background-color:rgb(120, 120, 216);
+  background-color:rgb(132, 72, 189);
 }
 button{
   font-size: 1.3rem;
   cursor: pointer;
   margin: 1rem auto;
-  background-color: rgb(179, 179, 235);
+  background-color: rgb(235, 219, 253);
   padding: 0.7rem;
   border-radius: 1rem;
 }
@@ -46,6 +45,6 @@ button{
   margin: auto;
   padding: 2rem;
   width: 40%;
-  background-color:rgb(179, 179, 235) ;
+  background-color:rgb(200, 166, 235) ;
   box-shadow: 0.5rem 0.5rem 0.5rem 0 rgb(73, 0, 73);
 }
