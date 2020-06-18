@@ -4,22 +4,19 @@
   padding: 0;
   font-family: monospace;
 }
-body {
-  height: 100%;
-}
 
 .container {
-  height: 100%;
+  width: 100%;
 }
 
+
 .mid-panel {
-  min-height: max-content;
   display: flex;
-  height: 80%;
+  width: 100%;
+
 }
 
 header {
-  height: 10vh;
   background-color: rgb(123, 62, 255);
   padding:1rem;
   border-bottom: 0.2rem solid rgb(62, 26, 139) ;
@@ -36,11 +33,12 @@ header h2 {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: flex-end;
-  align-items: stretch;
+	justify-content: center;
+	align-items: stretch;
+	align-content: stretch;
   background-color: rgb(255, 255, 255);
-  width: 75%;
-  height: 78vh;
+  width: 70%;
+  height: 80vh;
 
 }
 
@@ -55,14 +53,13 @@ header h2 {
   scroll-behavior: smooth;
   overflow-y: auto;
   
-  width: 75%;
-  max-height: 75%;
+
 
 }
 
 .action-dialog {
   padding: 0.5rem 1rem;
-  margin: 1rem 0.5rem;
+  margin: 1rem 1rem;
   color: rgb(117, 10, 136);
   font-size: 1.3rem;
   font-size: 600;
@@ -71,7 +68,7 @@ header h2 {
 }
 .browser-dialog {
   padding: 0.5rem 1rem;
-  margin: 1rem 0.5rem;
+  margin: 1rem 1rem;
   color: rgb(95, 39, 218);
   scroll-snap-align: start;
   font-size: 1.3rem;
@@ -90,31 +87,58 @@ header h2 {
 .player-turn{
   color: black;
   padding: 0 1rem;
-  margin: 0 0.5rem;
+  margin: 0 1rem;
   font-size: 1.2rem;
   scroll-snap-align: start;
   background-color: rgba(215, 172, 255, 0.445);
 }
 
-.botones {
-  height: 12vh;
-  width: 100%;;
+.buttons {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content:space-around;
+	align-items: center;
+  align-content: center;
+
+  
+  width: 100%;
   border-top: 0.2rem solid rgb(62, 26, 139);
-  padding: 0.5rem;
+  padding: 1rem 0.5rem;
   display: inline-flex;
   background-color: rgb(123, 62, 255);
 }
 
-#resetbtn{
-  position: absolute;
-  bottom: 10px;
-  left:300px;
+.mainButtons {
+  width: 40%;
 }
+
+#resetbtn{
+  margin: 0.5rem 0.5rem;
+  border: 2px solid rgb(207, 0, 0);
+  background-color: rgb(52, 34, 93);
+  color: rgb(207, 0, 0);
+
+}
+
+#startbtn{
+  margin: 0.5rem 0.5rem;
+  border: 2px solid 
+  rgb(0, 186, 211);
+  background-color: rgb(52, 34, 93);
+  color: rgb(0, 186, 211);
+
+}
+
+.inGameButtons {
+  width: 60%;
+}
+
 button{
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: 500;
   font-stretch: ultra-expanded;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   margin: 0.5rem 0.9rem;
   border-radius: 1rem;
   border-style: none;
@@ -124,7 +148,7 @@ button{
 }
 
 .side-panel {
-  width: 25%;
+  width: 30%;
   background-color: rgb(242, 227, 255);
 
   border-left: 4px solid rgb(165, 125, 200);
@@ -132,14 +156,11 @@ button{
 
 }
 
-.side-panel h2 {
-  font-size: 1.8rem;
-}
 
 .player-name{
-  margin: 1rem -0.5rem;
-  padding: 1.2rem;
-  font-size: 1.5rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   background-color:rgb(206, 151, 255);
 }

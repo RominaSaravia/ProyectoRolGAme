@@ -19,19 +19,23 @@
         <section id="user-action" class="show-action"></section>
       </section>
 
-      <aside  id="show-players" class="side-panel">
-        <!---PROXIMAMENTE-->
-        <h2>Jugadores</h2>
+      <aside id="show-players" class="side-panel">
+        <h3>Jugadores</h3>
         <section id="usersPlaying"></section>
-  
+
       </aside>
     </section>
 
-    <section id="botones" class="botones">
-      <button id="A" onclick="pressA()" hidden></button>
-      <button id="B" onclick="pressB()" hidden></button>
+    <section id="buttons" class="buttons">
+      <div class="inGameButtons">
+        <button id="A" onclick="pressA()" hidden></button>
+        <button id="B" onclick="pressB()" hidden></button>
+      </div>
 
-      <button id="resetbtn" onclick="resetGame()" hidden>RESET</button>
+      <div class="mainButtons">
+        <button id="startbtn" onclick="Start()" hidden>Comenzar</button>
+        <button id="resetbtn" onclick="resetGame()" hidden>Terminar</button>
+      </div>
     </section>
   </div>
 

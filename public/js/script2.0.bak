@@ -1,31 +1,29 @@
 // control turnos y rondas
-let stopLoop = false;    // [control del loop de turnos] - false --> continue loop  || true --> stop loop
-const totalRound = 4;    // numero de rondas hardcodeadas
-let roundsDone = 0;      // contador de rondas hechas
-let turnsDone = 0;       // contador de turnos hechos
-
+const totalRound = 10;
+let numRound = 0;
+let numTurn = 0;
+let turnsDone = 0;
 // control del camino elegido
-let randNum = 0;         //  randNum < 3 --> fail action || randNum > 3 --> success action 
-let stageCount = 0;      //  contador de nivel
-let userOption = "A";    //  camino: A || B
-let idProgres = `${stageCount}${userOption}`;    // construye el ID que se envia al back 
-
+let randNum = 0; // Resultado de los dados( randNum < 3 = fail || randNum > 3 = success )
+let stageCount = 0;
+let userOption = "A";
+let idProgres = `${stageCount}${userOption}`;
 // Control de quien está jugando (NO terminada)
 let playerTurn = 0;
 let playerBranch = `${stageCount}${userOption}`;
-
 // Data consultada al server y guardada en variables
 let gameScript;
 let userList;
 
-const playList = document.getElementById("usersPlaying");
-const playPanel = document.getElementById("show-players");
+const mainPanel = document.getElementById("botones");
 const userAction = document.getElementById("user-action");
-
 const newOptionA = document.getElementById("A");
 const newOptionB = document.getElementById("B");
+
+const playList = document.getElementById("usersPlaying");
+const playPanel = document.getElementById("show-players");
+
 const reset = document.getElementById("resetbtn");
-const start = document.getElementById("startbtn");
 
 
 //Inicio del juego, se hace un get a /users.
@@ -39,11 +37,11 @@ window.addEventListener("load", () => {
       userList = JSON.parse(this.responseText);
       console.log("Llego la lista de jugadores");
 
-      if (reset.hidden === true && start.hidden === true) {
+      if (reset.hidden === true) {
         reset.hidden = false;
-        start.hidden = false;
       };
 
+      Round();
       showPlayers();
     } else {
       console.log("ERROR");
@@ -243,61 +241,66 @@ function showNarrative() {
 };
 
 
-function asignturn() {
-  // Si es true, se detiene el loop de turnos
-  if (stopLoop) {
-    console.log("Se termina el Loop");
-
-    userAction.innerHTML = "";
-
-    if (start.hidden === true) {
-      start.hidden = false;
-    };
-
-    return;
-  }
-
-  // Control de numero de rondas
-  if (roundsDone <= totalRound) {
-
-    console.log("Timeout")
-
-    // Muestra los botones de acción
-    buttonDisplay();
-
-    // Tiempo de espera, momento del jugador para apretar un botón de acción
-    let timeOut = setTimeout(function () {
-      console.log("Callback");
-
-      console.log("Turno: " + turnsDone + ",juega: " + userList[turnsDone].username)
-
-      turnsDone++;
-
-      // Si es true, empieza una ronda nueva.
-      if (turnsDone == userList.length) {
-        roundsDone++
-        turnsDone = 0;
-      }
-
-      // Se vuelve a ejecutar la funcion creando un loop
-      asignturn();
-
-    }, 10000)
-
-    // Si es true, se detiene el loop
-    if (stopLoop) {
-      console.log("Final ronda, final loop");
-      clearTimeout(timeOut);
-    }
-
+// control de ciclos de turnos.(RONDAS)
+function Round() {
+  numRound++
+  // comienzo de etapa, se muestra el contexto del juego
+  if (numRound <= totalRound) {
+    console.log(`------------RONDA: ${numRound}--------------`);
+    asignTurn();
   } else {
-    console.log("Se terminaron las rondas")
-    stopLoop = true;
+    console.log(`------------Ronda:${numRound}----------`)
+    console.log(`------------FIN--------------`)
+  }
+}
+// Iterador de turnos, asigna el turno a cada jugador
+function asignTurn(cbTurn) {
 
+  console.log(`Turnos hechos ${turnsDone}, personas jugando ${userList.length}`);
+  // Se determina cuantos turnos son según el numero de usuarios.
+  if (turnsDone < userList.length) {
+    // llamdo a una funcion asincrónica, que devuelve sumTurn(callBack)
+    turnoTimer(sumTurn => {
+      console.log("Se termino el tiempo,");
+      // se le suma 1 a los turnos hechos
+      turnsDone = turnsDone + sumTurn;
+      // Se le suma 1 a el identificador de jugador Turno
+      playerTurn = playerTurn + sumTurn;
+      console.log("Se llama al siguiente jugador");
 
+      // Se verifica que todos hayan jugado.
+      // Si el indicador de turno y el subIndice del ultimo player son iguales 
+      if (playerTurn == userList.length) {
+        // Vuelven a 0 los contadores
+        playerTurn = 0;
+        turnsDone = 0;
+        //Comienza una nueva ronda
+        Round();
+
+      } else {
+        asignTurn();
+      }
+    })
   }
 
 }
+// Timer, se le da 5'' para que realice una acción, y se pasa al siguiente jugador
+function turnoTimer(callBack) {
+  console.log(`Turno de ${userList[playerTurn].username} TIMER, el jugador tiene 15 segundos`);
+
+  const newDialog = document.createElement("p");
+  newDialog.textContent = `Turno de: ${userList[playerTurn].username}`;
+  newDialog.classList.add("player-turn")
+  userAction.appendChild(newDialog);
+
+  buttonDisplay();
+
+  setTimeout(() => {
+    const sumTurn = 1
+    callBack(sumTurn)
+
+  }, 15000)
+};
 
 
 function showPlayers() {
@@ -313,44 +316,16 @@ function showPlayers() {
 
 }
 
-// Vuelve los valores a 0 y reinicia
 function resetGame() {
-  stopLoop = true;
-  // control turnos y rondas
-  roundsDone = 0;
-  turnsDone = 0;
-  // control del camino elegido
-  randNum = 0;
   stageCount = 0;
   userOption = "A";
   idProgres = `${stageCount}${userOption}`;
+  numRound = 0;
+  numTurn = 0;
+  turnsDone = 0;
 
   userAction.innerHTML = "";
 
-  // show or hide main buttons
-  if (newOptionA.hidden === false && newOptionB.hidden === false) {
+  Round();
 
-    newOptionA.hidden = true;
-    newOptionB.hidden = true;
-
-  };
-  // show or hide start button
-  if (start.hidden === false) {
-    start.hidden = true;
-  } else {
-    start.hidden = false;
-
-  }
-
-}
-
-// comienza el juego, llama a asignturn
-function Start() {
-  stopLoop = false;
-  if (start.hidden === false) {
-    start.hidden = true;
-
-  };
-
-  asignturn()
 }
