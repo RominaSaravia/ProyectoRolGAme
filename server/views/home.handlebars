@@ -1,0 +1,23 @@
+<div class="gallery">
+<h2>Buscador:</h2>
+
+<section class="adventureSearch">
+{{#each adventures}}
+
+<article class="preview">
+
+  <h4> {{this.name}} </h4>
+
+  <div class="imgPreview">
+    <img src="/img/{{this.showPic}}">
+  </div>
+
+  <a href="/adventures/{{this.id}}"> ENTRAR </a>
+
+</article>
+
+{{/each}}
+
+</section>
+
+</div>

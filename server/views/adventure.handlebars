@@ -1,0 +1,24 @@
+<div class="container">
+  {{#if adventure}}
+
+    <h3>Aventura: #{{adventure.id}}</h3>
+
+    <ul class="detalles">
+      <li>  <img src="/img/{{adventure.showPic}}" alt="bosque" width="100"> </li>
+      <li>Nombre: {{adventure.name}}</li>
+      <li>Número de jugadores: {{adventure.numPlayers}}</li>
+      <li>Descripción: {{{adventure.description}}}</li>
+    </ul>
+
+    <button class="startButton" onclick="window.location.href = `/main-page`">COMENZAR</button>
+
+    <a href="/home">Volver a Home</a>
+
+  {{else}}
+
+  <h2>Oops.. no se encontró la aventura.</h2>
+    <a href="/home">Volver a Home</a>
+
+  {{/if}}
+
+</div>

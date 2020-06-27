@@ -1,0 +1,180 @@
+*{
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0;
+  font-family: monospace;
+}
+
+.container {
+  padding: 1rem;
+}
+
+.banner {
+  padding: 2rem;
+  background-color: rgb(187, 140, 250);
+}
+
+.buttonHome {
+  text-align: center;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 25%;
+  background-color: rgb(168, 19, 228);
+}
+.buttonHome a {
+
+  text-decoration: none;
+  font-size: 1.2;
+  color: white;
+  font-weight: 600;
+}
+
+.gallery {
+  margin: auto;
+  width: 75%;
+  padding:2rem;
+}
+
+.adventureSearch {
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+	align-content: flex-start;
+}
+
+.preview {
+  min-width: 150px;
+  width: 20%;
+  padding: 0.5rem;
+  margin: 1rem;
+  background-color: rgb(162, 80, 238);
+  border: 5px double rgb(77, 76, 76);
+  border-radius:1rem ;
+  box-shadow: 8px 8px 10px 1px rgba(0, 0, 0, 0.466);
+
+  display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	align-content: stretch;
+
+
+}
+.imgPreview {
+  width: 100%;
+  margin: auto;
+  padding: 1rem;
+}
+
+.imgPreview img {
+  width: 100%;
+  margin: auto;
+}
+
+.preview h4 {
+  margin: 0.5rem auto;
+  color: rgb(255, 255, 255);
+  font-size: 1.2rem;
+  text-align: center;
+}
+.preview a {
+  padding:1rem;
+  margin: auto;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-style: none;
+  text-decoration: none;
+  color: white;
+}
+
+.detalles {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: 6px double black;
+
+  list-style: none;
+}
+
+.detalles li {
+  margin: 1rem 0;
+}
+
+.startButton {
+  margin: 2rem 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: rgb(205, 151, 255);
+
+}
+
+.login-input {
+  background-color:rgb(200, 166, 235);
+  position: relative;
+  border: 5px solid rgb(189, 138, 240) ;
+  margin: 2rem auto;
+  width: 40%;
+
+
+  /* box-shadow: 0.5rem 0.5rem 0.5rem 0 rgb(73, 0, 73); */
+}
+
+form {
+
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+  align-content: stretch;
+
+}
+
+label{
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+input[type=submit]{
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 1rem auto;
+  background-color: rgb(235, 219, 253);
+  padding: 0.7rem;
+  border-radius: 1rem;
+}
+
+.message-failure {
+  width: 50%;
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  background-color: rgb(250, 110, 110);
+  color: rgb(112, 11, 11);
+  margin: auto;
+}
+
+.message-success {
+  width: 50%;
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  background-color: rgb(126, 250, 110);
+  color: rgb(16, 82, 4);
+  margin: auto;
+}
+
+
+.signUpLink {
+
+  text-align: center;
+  margin: 1rem auto;
+  color: blue;
+  font-size: 0.8rem;
+}

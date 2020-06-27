@@ -92,6 +92,16 @@ header h2 {
   scroll-snap-align: start;
   background-color: rgba(215, 172, 255, 0.445);
 }
+.dice-result{
+  color: black;
+  padding: 0 1rem;
+  margin: 0 1rem;
+  font-size: 1.2rem;
+  scroll-snap-align: start;
+  background-color: rgba(167, 109, 221, 0.445);
+
+}
+
 
 .buttons {
 	display: flex;

@@ -1,0 +1,22 @@
+<div class="login-input">
+
+  <form action="/register" method="post">
+    <label for="user">Nombre</label>
+    <input type="text" name="user" id="user">
+
+    <label for="pass">Contraseña</label>
+    <input type="password" name="pass" id="pass">
+
+    <label for="confirmPass">Repetir Contraseña</label>
+    <input type="password" name="confirmPass" id="confirmPass">
+
+
+    <input type="submit" value="Sign UP">
+
+    {{#if msg}}
+    <p class="message-{{msg.type}}"> {{msg.text}}</p>
+    {{/if}}
+
+  </form>
+
+</div>

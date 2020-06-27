@@ -15,7 +15,6 @@ const mongoURL = "mongodb+srv://Romina:R25l1194s@proyectorol.rl6g4.gcp.mongodb.n
 const login = (user, pass, cbResult) => {
   mongodb.MongoClient.connect(mongoURL, { useUnifiedTopology: true }, (err, client) => {
     if (err) {
-
       // Si no me pude conectar al server, retorno el false con un mensaje apropiado para el front
       cbResult({
         valid: false,
@@ -27,10 +26,8 @@ const login = (user, pass, cbResult) => {
       const serverDB = client.db("Proyecto");
       const usersCollection = serverDB.collection("ConfirmUsers");
 
-      usersCollection.findOne({ username: user, password: pass }, (err, foundUser) => {
-
+      usersCollection.findOne({ user: user, password: pass }, (err, foundUser) => {
         if (err) {
-
           // Si no pude consultar la colección, también retorno false con un mensaje
           cbResult({
             valid: false,
@@ -38,7 +35,6 @@ const login = (user, pass, cbResult) => {
           });
 
         } else {
-
           // Si pude consultar los datos, valido si encontré esa combinación usr/pwd o no.
           if (!foundUser) {
             cbResult({
@@ -51,7 +47,6 @@ const login = (user, pass, cbResult) => {
               valid: true
             });
           }
-
         }
 
         client.close();
@@ -68,8 +63,8 @@ const login = (user, pass, cbResult) => {
  * @param {function} cbResult CallBack: funcion(result: {
  * success: boolean
  * user: {
- * username:string,
- * pass:string
+ *  user:string,
+ *  password:string
  * }
  * })  
  */
@@ -85,7 +80,7 @@ const getUser = (username, cbResult) => {
       const serverDB = client.db("Proyecto");
       const usersCollection = serverDB.collection("ConfirmUsers");
 
-      usersCollection.findOne({ username: username }, (err, result) => {
+      usersCollection.findOne({ user: username }, (err, result) => {
 
         if (err) {
           cbResult({
@@ -119,30 +114,35 @@ const registerUser = (username, password, cbResult) => {
   mongodb.MongoClient.connect(mongoURL, { useUnifiedTopology: true }, (err, client,) => {
 
     if (err) {
-      // Si no me pude conectar al server, retorno el false con un mensaje apropiado para el front
+      // Si no me pude conectar al server, retorno el false
       cbResult(false);
       return;
+
+    } else {
+
+      const serverDB = client.db("Proyecto");
+      const usersCollection = serverDB.collection("ConfirmUsers");
+
+      const newUser = {
+        gameState: "0A",
+        user: username,
+        password: password
+      };
+
+      usersCollection.insertOne(newUser, (err, result) => {
+        if (err) {
+          cbResult(false);
+
+        } else {
+          cbResult(true)
+        }
+
+        client.close();
+
+
+      })
     }
 
-    const serverDB = client.db("Proyecto");
-    const usersCollection = serverDB.collection("ConfirmUsers");
-
-    const newUser = {
-      gameState: "0A",
-      user: username,
-      password: password
-    };
-
-    usersCollection.insertOne( newUser , (err, result) => {
-      if (err) {
-        cbResult(false);
-        client.close();
-        return;
-      } else {
-        cbResult(true)
-        client.close();
-      }
-    })
   })
 
 }

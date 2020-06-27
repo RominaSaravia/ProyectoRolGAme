@@ -1,0 +1,21 @@
+<div class="login-input">
+
+  <form action="/login" method="post">
+    <label for="user">Nombre</label>
+    <input type="text" name="user" id="user">
+
+    <label for="pass">Contraseña</label>
+    <input type="password" name="pass" id="pass">
+
+    <input type="submit" value="Log In">
+
+    {{#if msg}}
+    <p class="message-{{msg.type}}"> {{msg.text}}</p>
+    {{/if}}
+
+  </form>
+<div class="signUpLink">
+  <a  href="/signup">¿No tienes una cuenta?</a>
+</div>
+
+</div>

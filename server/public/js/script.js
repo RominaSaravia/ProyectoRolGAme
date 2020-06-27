@@ -8,7 +8,7 @@ let turnsDone = 0;       // contador de turnos hechos
 let randNum = 0;         //  randNum < 3 --> fail action || randNum > 3 --> success action 
 let stageCount = 0;      //  contador de nivel
 let userOption = "A";    //  camino: A || B
-let idProgres = `${stageCount}${userOption}`;    // construye el ID que se envia al back 
+let idProgres = `${stageCount}${userOption}`;    // construye el ID, lo recibe el back y devuelve objeto con el camino
 
 // Control de quien está jugando (NO terminada)
 let playerTurn = 0;
@@ -38,6 +38,7 @@ window.addEventListener("load", () => {
     if (this.status == 200) {
       userList = JSON.parse(this.responseText);
       console.log("Llego la lista de jugadores");
+      console.log(userList);
 
       if (reset.hidden === true && start.hidden === true) {
         reset.hidden = false;
@@ -185,6 +186,7 @@ function pressB() {
         //Se actualiza el primer valor de idProgres
         stageCount++;
         idProgres = `${stageCount}${userOption}`;
+        console.log(stageCount + userOption);
 
         // Si los dados dan fallo
       } else {
@@ -196,6 +198,7 @@ function pressB() {
 
         stageCount++;
         idProgres = `${stageCount}${userOption}`;
+        console.log(stageCount + userOption);
 
 
       };
@@ -214,6 +217,16 @@ function pressB() {
 // Tirada de dados de 6 caras, 
 function funcDados() {
   randNum = Math.floor(Math.random() * 6) + 1;
+  const diceResult = document.createElement("p");
+
+  if (randNum > 3) {
+    diceResult.textContent = `Tiras los dados: ${randNum} - Salió con éxito`;
+  }else {
+    diceResult.textContent = `Tiras los dados: ${randNum} - No salió bien la acción`;    
+  }
+
+  diceResult.classList.add("dice-result")
+  userAction.appendChild(diceResult);
 };
 
 
@@ -269,7 +282,7 @@ function asignturn() {
     let timeOut = setTimeout(function () {
       console.log("Callback");
 
-      console.log("Turno: " + turnsDone + ",juega: " + userList[turnsDone].username)
+      console.log("Turno: " + turnsDone + " ,juega: " + userList[turnsDone].username)
 
       turnsDone++;
 
@@ -306,7 +319,7 @@ function showPlayers() {
     const newPlayer = document.createElement("div");
 
     newPlayer.classList.add("player-name");
-    newPlayer.innerHTML = userList[i].username;
+    newPlayer.innerHTML = userList[i].user;
     playPanel.appendChild(newPlayer);
 
   }
@@ -344,7 +357,7 @@ function resetGame() {
 
 }
 
-// comienza el juego, llama a asignturn
+// comienza el juego
 function Start() {
   stopLoop = false;
   if (start.hidden === false) {
