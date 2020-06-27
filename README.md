@@ -1,20 +1,31 @@
-##Proyecto de juego.
-*Elige tu propia aventura*
+# Proyecto de juego
+
+### Elige tu propia aventura
+
+El proyecto consiste en jugar una aventura narrativa con la incorporación de dados en la realización de acciones.
+
++ Podes hacerte una cuenta.
++ ver que aventuras hay disponibles.
++ Hay aventuras en solitario o multijugador. 
++ El usuario elige y empieza a jugar.
+
+Las historias son simples, pero hay dos posibles caminos a cada paso que quiera dar el personaje. Con su probabilidad de éxito o fallo al querer realizar cada acción. 
+
+Por lo tanto el jugador tendrá que decidir que camino tomar y dependerá del resultado de los dados para seguir con la historia.
 
 ---
 
-####Pre-requisitos:
+### Pre-requisitos:
 ```sh
 node.js
 ```
 
-####Instalación
+### Instalación
 ```sh
 ejecutar: npm update
 ejecutar: npm run start
 ```
-
-####Tecnologias usadas
+### Tecnologias usadas
 ```sh
 nodeJs
 express
@@ -23,7 +34,7 @@ mongodb
 ```
 ---
 
-#####Estructura de datos:
+### Estructura de datos:
 Usuario:
 ```javascript
 {
