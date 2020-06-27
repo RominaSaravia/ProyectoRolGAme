@@ -9,7 +9,6 @@
   width: 100%;
 }
 
-
 .mid-panel {
   display: flex;
   width: 100%;
@@ -38,8 +37,6 @@ header h2 {
 	align-content: stretch;
   background-color: rgb(255, 255, 255);
   width: 70%;
-  height: 80vh;
-
 }
 
 .show-action{
@@ -48,6 +45,7 @@ header h2 {
   flex-wrap: nowrap;
   justify-content: flex-end;
   align-items: stretch;
+  height: 78vh;
 /*Config Scroll*/
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
