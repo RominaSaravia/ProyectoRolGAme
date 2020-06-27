@@ -1,15 +1,30 @@
 ##Proyecto de juego.
-Elige tu propia aventura
+*Elige tu propia aventura*
 
-***
-Requerimientos: node.js,
+---
 
+####Pre-requisitos:
+```sh
+node.js
+```
 
-____Base de datos: Mongo Atlas____
+####Instalación
+```sh
+ejecutar: npm update
+ejecutar: npm run start
+```
 
+####Tecnologias usadas
+```sh
+nodeJs
+express
+express-handlebars
+mongodb
+```
+---
 
-
-+ **Estructura de datos del usuario:**
+#####Estructura de datos:
+Usuario:
 ```javascript
 {
   "gameState":"0A",   // ID: guarda el camino elegido por el jugador
@@ -18,8 +33,7 @@ ____Base de datos: Mongo Atlas____
 }
 ```
 
-
-+ **Estrucrura de datos del Juego, caminos y resultados:**
+Juego: opciones, caminos y resultados:
 ```javascript
   {
   "id":"0A",  // ID del camino tomado.
