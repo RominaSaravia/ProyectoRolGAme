@@ -36,6 +36,10 @@
   padding:2rem;
 }
 
+.gallery h2 {
+  font-size: 1.5rem;
+}
+
 .adventureSearch {
 
 	display: flex;

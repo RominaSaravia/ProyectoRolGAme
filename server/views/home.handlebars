@@ -1,23 +1,34 @@
 <div class="gallery">
-<h2>Buscador:</h2>
+  <h2>Buscador:</h2>
 
-<section class="adventureSearch">
-{{#each adventures}}
+  <section class="adventureSearch">
+    {{#each adventures}}
 
-<article class="preview">
+    <article class="preview">
 
-  <h4> {{this.name}} </h4>
+      <h4> {{this.name}} </h4>
 
-  <div class="imgPreview">
-    <img src="/img/{{this.showPic}}">
-  </div>
+      <div class="imgPreview">
+        <img src="/img/{{this.showPic}}">
+      </div>
 
-  <a href="/adventures/{{this.id}}"> ENTRAR </a>
+      <div class="details">
 
-</article>
+        {{#if this.single}}
+        <p>SINGLE PLAYER</p>
+        {{else}}
+        <p>MULTIPLAYER</p>
+        {{/if}} 
 
-{{/each}}
 
-</section>
+      </div>
+
+      <a href="/adventures/{{this.id}}"> ENTRAR </a>
+
+    </article>
+
+    {{/each}}
+
+  </section>
 
 </div>
