@@ -4,14 +4,15 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "first-start": "npm update && npm run start"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "express-handlebars": "^4.0.4",
-    "mongodb": "^3.5.9"
+    "express-handlebars": "^4.0.6",
+    "mongodb": "^3.6.2"
   },
   "repository": {
     "type": "git",

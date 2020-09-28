@@ -3,12 +3,9 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const exphbs = require("express-handlebars");
 
-// const getGameData = require("gameData")
 const getData = require("./useData.js");
 const adventures = require("./adventures.js");
 const auth = require("./auth.js");
-
-const userList = [];
 
 const app = express();
 
@@ -31,8 +28,6 @@ app.engine("handlebars", exphbs({
 //Un GET a la pagina inicial
 app.get("/", (req, res) => {
   res.render("index");
-
-  //res.sendFile(path.join(__dirname, "../client/homeTest.html"));
 
 });
 
@@ -81,6 +76,8 @@ app.post("/register", (req, res) => {
 
     // Procesar alta de usuario
     auth.registerUser(req.body.user, req.body.pass, result => {
+
+      // Se pudo registrar, renderizo index con mesaje de exito
       if (result) {
         res.render("index", {
           msg: {
@@ -89,26 +86,19 @@ app.post("/register", (req, res) => {
           }
         });
 
-      }else {
+      // No se pudo registrar, renderizo signup con mesaje de error
+      } else {
         res.render("signup", {
           msg: {
             type: "failure",
             text: "No se pudo registrar, intente más tarde"
           }
-        })
-
+        });
       }
-    })
 
-
+    });
 
   });
-
-  // userList.push({
-  //   username: req.body.username,
-  //   password: req.body.password
-  // });
-  // res.status(200).send("usuario registrado");
 });
 
 // Endpoint que valida user/pass
@@ -117,10 +107,13 @@ app.post("/login", (req, res) => {
   auth.login(req.body.user, req.body.pass, cbResponse => {
 
     if (!cbResponse.valid) {
-      res.render("index", { msg: {
-        type: "failure",
-        text: cbResponse.msg} });
-      //res.sendFile(path.join(__dirname, "public/index.html"))
+      res.render("index", {
+        msg: {
+          type: "failure",
+          text: cbResponse.msg
+        }
+      });
+
     } else {
       // Consulta de las aventuras disponibles, armado de la home
       adventures.getAll(adventuresList => {

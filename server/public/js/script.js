@@ -28,8 +28,7 @@ const reset = document.getElementById("resetbtn");
 const start = document.getElementById("startbtn");
 
 
-//Inicio del juego, se hace un get a /users.
-// Una vez se tenga la informacion empieza la ronda
+//GET a /users.
 window.addEventListener("load", () => {
 
   const requestUser = new XMLHttpRequest();

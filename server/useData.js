@@ -1,9 +1,10 @@
 const mongodb = require("mongodb");
 const mongoURL = "mongodb+srv://Romina:R25l1194s@proyectorol.rl6g4.gcp.mongodb.net/Proyecto?retryWrites=true&w=majority";
+const mongoConfig = { useUnifiedTopology: true };
 
 
 const getGameScript = (cbResult) => {
-  mongodb.MongoClient.connect(mongoURL ,  { useUnifiedTopology: true }, (err,client)=> {
+  mongodb.MongoClient.connect(mongoURL , mongoConfig , (err,client) => {
     if (err) {
       cbResult(undefined)
       client.close()
@@ -26,7 +27,7 @@ const getGameScript = (cbResult) => {
 
 
 const getAll = (cbResult) => {
-  mongodb.MongoClient.connect(mongoURL, { useUnifiedTopology: true }, (err,client)=> {
+  mongodb.MongoClient.connect(mongoURL, mongoConfig , (err,client) => {
     if (err) {
       cbResult([]);
       client.close();
@@ -49,7 +50,7 @@ const getAll = (cbResult) => {
   });
 }
 const getById = (id, cbResult) => {
-  mongodb.MongoClient.connect(mongoURL ,  { useUnifiedTopology: true }, (err,client)=> {
+  mongodb.MongoClient.connect(mongoURL , mongoConfig , (err,client) => {
     if (err) {
       cbResult(undefined);
       client.close();
