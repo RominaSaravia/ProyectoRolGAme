@@ -14,7 +14,9 @@ El proyecto consiste en jugar una aventura narrativa con la incorporación de da
 Las historias son simples, pero hay dos posibles caminos a cada paso que quiera dar el personaje. Con su probabilidad de éxito o fallo al querer realizar cada acción. 
 
 Por lo tanto el jugador tendrá que decidir que camino tomar y dependerá del resultado de los dados para seguir con la historia.
-Live demo: [DEMO](https://limitless-hamlet-37147.herokuapp.com/main-page "ROLGAME")
+
+
+:dragon: Live demo: [DEMO](https://limitless-hamlet-37147.herokuapp.com/main-page "ROLGAME")
 
 ---
 
