@@ -1,11 +1,12 @@
 {
-  "name": "proyecto",
+  "name": "rolgame",
   "version": "1.0.0",
-  "description": "",
+  "description": "Comunidad IT - Proyecto final",
   "main": "server.js",
   "scripts": {
     "start": "node server/server.js",
-    "first-start": "npm update && npm run start"
+    "first-start": "npm update && npm run start",
+    "build": "npm update && npm run start"
   },
   "author": "",
   "license": "ISC",
