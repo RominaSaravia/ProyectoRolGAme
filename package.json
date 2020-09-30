@@ -1,18 +1,21 @@
 {
   "name": "rolgame",
   "version": "1.0.0",
-  "description": "Comunidad IT - Proyecto final",
+  "description": "Comunidad IT - Proyecto final - Romina Saravia",
   "main": "server.js",
   "scripts": {
     "start": "node server/server.js",
     "first-start": "npm update && npm run start"
   },
-  "author": "",
+  "author": "Romina Saravia",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^4.0.6",
     "mongodb": "^3.6.2"
+  },
+  "engines": {
+    "node": "12.16.1"
   },
   "repository": {
     "type": "git",

@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const exphbs = require("express-handlebars");
+const PORT = 4444;
 
 const getData = require("./useData.js");
 const adventures = require("./adventures.js");
@@ -166,6 +167,6 @@ app.get("/scriptdb", (req, res) => {
 });
 
 
-app.listen(4444, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log("servido iniciado en http://localhost:4444");
 });
