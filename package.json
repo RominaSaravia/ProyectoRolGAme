@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node server/server.js",
     "first-start": "npm update && npm run start",
-    "build": "npm update && npm run start"
   },
   "author": "",
   "license": "ISC",
