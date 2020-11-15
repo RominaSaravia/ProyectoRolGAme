@@ -1,6 +1,4 @@
-const mongodb = require("mongodb");
-const mongoURL = "mongodb+srv://Romina:R25l1194s@proyectorol.rl6g4.gcp.mongodb.net/Proyecto?retryWrites=true&w=majority";
-
+const mongo = require("./const").mongodb;
 
 /**
  * 
@@ -10,14 +8,19 @@ const mongoURL = "mongodb+srv://Romina:R25l1194s@proyectorol.rl6g4.gcp.mongodb.n
  * funcion que valida usuario
  * @param {string} user username
  * @param {string} pass password
- * @param {function} cbResult Callback: function(result: { valid: boolean, msg: string })
+ * @param {function} cbResult Callback: function(result: { 
+ * user?: {
+    username: string,
+    userGameState:string
+    }, 
+    msg: string 
+  })
  */
 const login = (user, pass, cbResult) => {
-  mongodb.MongoClient.connect(mongoURL, { useUnifiedTopology: true }, (err, client) => {
+  mongo.mongoClient.connect(mongo.dbURL, mongo.config , (err, client) => {
     if (err) {
       // Si no me pude conectar al server, retorno el false con un mensaje apropiado para el front
       cbResult({
-        valid: false,
         msg: "Sorry, site is under maintenance now, retry later."
       });
 
@@ -30,7 +33,6 @@ const login = (user, pass, cbResult) => {
         if (err) {
           // Si no pude consultar la colección, también retorno false con un mensaje
           cbResult({
-            valid: false,
             msg: "Sorry, the site is under maintenance now, retry later."
           });
 
@@ -38,13 +40,14 @@ const login = (user, pass, cbResult) => {
           // Si pude consultar los datos, valido si encontré esa combinación usr/pwd o no.
           if (!foundUser) {
             cbResult({
-              valid: false,
               msg: "Invalid user/password."
             });
           } else {
-            // Si valida ok, no mando mensaje porque no se va a usar.
             cbResult({
-              valid: true
+              user: {
+                username: foundUser.user,
+                UserGameState:foundUser.gameState
+              }
             });
           }
         }
@@ -62,15 +65,11 @@ const login = (user, pass, cbResult) => {
  * @param {string} username Nombre de usuario 
  * @param {function} cbResult CallBack: funcion(result: {
  * success: boolean
- * user: {
- *  user:string,
- *  password:string
- * }
+ * user: {user:string,password:string }
  * })  
  */
 const getUser = (username, cbResult) => {
-
-  mongodb.MongoClient.connect(mongoURL, { useUnifiedTopology: true }, (err, client,) => {
+  mongo.mongoClient.connect(mongo.dbURL, mongo.config , (err, client) => {
     if (err) {
       cbResult({
         success: false
@@ -91,13 +90,9 @@ const getUser = (username, cbResult) => {
             success: true,
             user: result
           })
-
         }
-
         client.close();
-
       });
-
     }
   });
 
@@ -111,8 +106,7 @@ const getUser = (username, cbResult) => {
  */
 const registerUser = (username, password, cbResult) => {
 
-  mongodb.MongoClient.connect(mongoURL, { useUnifiedTopology: true }, (err, client,) => {
-
+  mongo.mongoClient.connect(mongo.dbURL, mongo.config , (err, client,) => {
     if (err) {
       // Si no me pude conectar al server, retorno el false
       cbResult(false);
@@ -139,12 +133,9 @@ const registerUser = (username, password, cbResult) => {
 
         client.close();
 
-
       })
     }
-
   })
-
 }
 
 module.exports = {
