@@ -1,6 +1,6 @@
 // control turnos y rondas
 let stopLoop = false;
-const totalRound = 4;    // numero de rondas
+const totalRound = 8;    // numero de rondas
 let roundsDone = 0;      // contador de rondas hechas
 let turnsDone = 0;       // contador de turnos hechos
 let timeTextValue = 0;
@@ -9,15 +9,17 @@ let timeTextValue = 0;
 let randNum = 0;         //  Tirada de dados
 let stageCount = 0;      //  contador de nivel
 let userOption = "A";    //  camino: A || B
-let idProgres = `${stageCount}${userOption}`;    // construye el ID, lo recibe el back y devuelve objeto con el camino
+// construye el ID, lo recibe el back y devuelve objeto con el camino
+let idProgres = `${stageCount}${userOption}`;
 let userTurn = "";
 
-// Control de quien está jugando (NO terminada)
+// Control de quien está jugando
 let playerTurn = 0;
 let playerBranch = `${stageCount}${userOption}`;
 
 // Data consultada al server y guardada en variables
 let gameScript;
+//La lista se consulta en la base de datos
 let userList;
 
 const playList = document.getElementById("usersPlaying");
@@ -38,8 +40,6 @@ window.addEventListener("load", () => {
   requestUser.addEventListener("load", function () {
     if (this.status == 200) {
       userList = JSON.parse(this.responseText);
-      console.log("Llego la lista de jugadores");
-      console.log(userList.usersPlaying);
 
       if (reset.hidden === true && start.hidden === true) {
         reset.hidden = false;
@@ -47,8 +47,6 @@ window.addEventListener("load", () => {
       };
 
       //showPlayers();
-    } else {
-      console.log("ERROR");
     }
   });
 
@@ -102,10 +100,6 @@ function buttonDisplay() {
 
       showNarrative();
 
-    } else {
-
-      console.log("Button display ERROR")
-
     }
 
   });
@@ -133,7 +127,7 @@ function pressA() {
     if (this.status == 200) {
 
       let userStage = JSON.parse(this.responseText);
-      console.log("se tiran los dados")
+
       funcDados();
 
       //Si los dados dan exito
@@ -147,8 +141,6 @@ function pressA() {
         //Se actualiza el primer valor de idProgres
         stageCount++;
         idProgres = `${stageCount}${userOption}`;
-
-        console.log(stageCount + userOption);
 
       } else {
         //Se muestra la respueta en pantalla
@@ -165,8 +157,6 @@ function pressA() {
       };
 
 
-    } else {
-      console.log("ERROR")
     }
   })
 
@@ -208,7 +198,6 @@ function pressB() {
         //Se actualiza el primer valor de idProgres
         stageCount++;
         idProgres = `${stageCount}${userOption}`;
-        console.log(stageCount + userOption);
 
       } else {
         //Se muestra la respueta en pantalla
@@ -220,14 +209,9 @@ function pressB() {
         //Se actualiza el primer valor de idProgres
         stageCount++;
         idProgres = `${stageCount}${userOption}`;
-        console.log(stageCount + userOption);
-
 
       };
 
-    } else {
-
-      console.log("ERROR")
     }
   })
 
@@ -274,11 +258,6 @@ function showNarrative() {
       newDialog.innerHTML = userStage.narrative;
       showUserTurn.appendChild(newDialog);
 
-
-
-    } else {
-      console.log("ERROR - showNarrative");
-
     }
   });
 
@@ -290,7 +269,7 @@ function showNarrative() {
 
 function asignturn() {
   if (stopLoop) {
-    console.log("Se termina el Loop");
+    console.log("Se terminaron las rondas");
 
     userAction.innerHTML = "";
 
@@ -307,7 +286,6 @@ function asignturn() {
     // Muestra los botones de acción
     userTurn = userList.usersPlaying[turnsDone];
 
-    console.log(`Turno de: ${userList.usersPlaying[turnsDone]}`)
     buttonDisplay();
 
     timeTextValue = 0;
@@ -327,7 +305,7 @@ function asignturn() {
       // Se vuelve a ejecutar la funcion creando un loop
       asignturn();
 
-    }, 11000)
+    }, 21000)
 
 
     if (stopLoop) {
@@ -349,7 +327,7 @@ function showTimer() {
   let timeText = setTimeout(function () {
     timeTextValue++;
 
-    if (timeTextValue >= 10) {
+    if (timeTextValue >= 20) {
       time.textContent = `Tiempo: ${timeTextValue}`;
       clearTimeout(timeText);
 
