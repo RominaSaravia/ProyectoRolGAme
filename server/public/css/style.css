@@ -5,29 +5,47 @@
   font-family: monospace;
 }
 
-.container {
-  width: 100%;
-}
+.container { width: 100%; }
 
-.mid-panel {
+.navBar{
+  padding: 1.5rem;
+  background-color: rgb(187, 140, 250);
+
   display: flex;
-  width: 100%;
-
+  justify-content: space-between;
+  align-items: center;
 }
 
-header {
-  background-color: rgb(123, 62, 255);
-  padding:1rem;
-  border-bottom: 0.2rem solid rgb(62, 26, 139) ;
+ul{ list-style: none; }
+
+a {
+  text-decoration: none;
+  color: #000000;
 }
 
-header h2 {
+.navList {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navList li {
+  padding: 0 1rem;
+  font-size: 1.2rem;
+}
+
+.navBar h2 {
   font-family: monospace;
   font-size: 2rem;
   font-weight: 500;
   color: rgb(242, 231, 255);
 
 }
+
+.mid-panel {
+  display: flex;
+  width: 100%;
+}
+
 .main-section{
   display: flex;
   flex-direction: column;
@@ -36,7 +54,7 @@ header h2 {
 	align-items: stretch;
 	align-content: stretch;
   background-color: rgb(255, 255, 255);
-  width: 70%;
+  width: 100%;
 }
 
 .show-action{
@@ -50,9 +68,6 @@ header h2 {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   overflow-y: auto;
-  
-
-
 }
 
 .action-dialog {
@@ -90,6 +105,7 @@ header h2 {
   scroll-snap-align: start;
   background-color: rgba(215, 172, 255, 0.445);
 }
+
 .dice-result{
   color: black;
   padding: 0 1rem;
@@ -97,49 +113,57 @@ header h2 {
   font-size: 1.2rem;
   scroll-snap-align: start;
   background-color: rgba(167, 109, 221, 0.445);
-
 }
-
 
 .buttons {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	justify-content:space-around;
+	justify-content:space-between;
 	align-items: center;
   align-content: center;
 
   
   width: 100%;
-  border-top: 0.2rem solid rgb(62, 26, 139);
-  padding: 1rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   display: inline-flex;
-  background-color: rgb(123, 62, 255);
+  background-color: rgb(187, 140, 250);
 }
 
 .mainButtons {
   width: 40%;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	align-items: center;
 }
 
 #resetbtn{
   margin: 0.5rem 0.5rem;
-  border: 2px solid rgb(207, 0, 0);
-  background-color: rgb(52, 34, 93);
-  color: rgb(207, 0, 0);
+  background-color: rgb(67, 47, 112);
+  color: #ffffff;
 
 }
 
 #startbtn{
   margin: 0.5rem 0.5rem;
-  border: 2px solid 
-  rgb(0, 186, 211);
-  background-color: rgb(52, 34, 93);
-  color: rgb(0, 186, 211);
+}
+
+#timer {
+  font-size: 1.5rem;
+  padding: 0 1rem;
 
 }
 
 .inGameButtons {
   width: 60%;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: left;
+	align-items: center;
+
 }
 
 button{
@@ -147,28 +171,10 @@ button{
   font-weight: 500;
   font-stretch: ultra-expanded;
   font-size: 1.1rem;
-  margin: 0.5rem 0.9rem;
+  margin: 0.5rem 0.5rem;
   border-radius: 1rem;
   border-style: none;
   background-color: rgb(227, 254, 255);
   padding: 0.5rem 1rem;
   color:black;
-}
-
-.side-panel {
-  width: 30%;
-  background-color: rgb(242, 227, 255);
-
-  border-left: 4px solid rgb(165, 125, 200);
-  padding:1rem
-
-}
-
-
-.player-name{
-  margin: 1rem 0;
-  padding: 1rem;
-  font-size: 1.2rem;
-  font-weight: 500;
-  background-color:rgb(206, 151, 255);
 }

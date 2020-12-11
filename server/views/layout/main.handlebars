@@ -1,18 +1,35 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sitio test</title>
-  <link rel="stylesheet" href="/css/landing.css">
+  <title>Game</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
 
-  <header class="banner">
-  <h2>Vive una aventura o muchas</h2>
+<body>
+  <header>
+
+    <nav class="navBar">
+
+      <h2>Elige tu camino</h2>
+      <ul class="navList">
+        <li> <a href="/home">HOME</a> </li>
+        <li>
+          <p>{{user.username}}</p>
+        </li>
+        <li> <a href="/logout"> Cerrar Session </a> </li>
+      </ul>
+
+    </nav>
+
   </header>
- 
+
   {{{body}}}
 
+  <script src="js/script.js"></script>
+
 </body>
+
 </html>

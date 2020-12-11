@@ -5,17 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sitio test</title>
-  <link rel="stylesheet" href="/css/landing.css">
+  <link rel="stylesheet" href="/css/styleLogged.css">
 </head>
 
 <body>
-
-  <header class="banner">
+  <header>
+    
     <nav class="navBar">
-          <h2>Vive una aventura o muchas</h2>
+      <h2>Elige tu aventura </h2>
+
       <ul class="navList">
-        <li><a href="/home">HOME</a></li>
-        <li> <p>{{user.username}}</p> </li>
+        <li> <a href="/home">HOME</a> </li>
+        <li>
+          <p>{{user.username}}</p>
+        </li>
+        <li> <a href="/logout"> Cerrar Session </a> </li>
       </ul>
 
     </nav>

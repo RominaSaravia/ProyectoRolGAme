@@ -3,7 +3,8 @@ const mongoURL = "mongodb+srv://Romina:R25l1194s@proyectorol.rl6g4.gcp.mongodb.n
 
 
 /**
- * @param {function} cbResult 
+ * Consulta la lista de aventuras, devuelve un array de objetos o un array vacio
+ * @param {function} cbResult
  */
 const getAll = (cbResult) => {
 
@@ -32,9 +33,15 @@ const getAll = (cbResult) => {
 }
 
 /**
- * 
+ * Filtra por ID la lista de aventuras
  * @param {string} id
- * @param {function} cbResult 
+ * @param {function} cbResult Callback function( result:{
+ * id: string,
+ * name: string,
+ * showPic: string,
+ * single: boolean,
+ * description: string
+ * })
  * 
  * @returns {object || undefined}
  */
