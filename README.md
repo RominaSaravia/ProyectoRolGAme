@@ -16,7 +16,7 @@ Las historias son simples, pero hay dos posibles caminos a cada paso que quiera 
 Por lo tanto el jugador tendrá que decidir que camino tomar y dependerá del resultado de los dados para seguir con la historia.
 
 
-:dragon: Live demo: [DEMO](https://limitless-hamlet-37147.herokuapp.com/main-page "ROLGAME")
+:dragon: Live demo: [DEMO](https://limitless-hamlet-37147.herokuapp.com "ROLGAME")
 
 ---
 
