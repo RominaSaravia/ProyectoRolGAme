@@ -51,7 +51,7 @@ window.addEventListener("load", () => {
   });
 
   // pedido GET a ATLAS con la info users.json
-  requestUser.open("GET", "/game-session?idSession=sala01");
+  requestUser.open("GET", "/ingame/game-session?idSession=sala01");
   requestUser.send();
 
 });
@@ -104,7 +104,7 @@ function buttonDisplay() {
 
   });
 
-  buttonRequest.open("GET", "/scriptdb?idProgres=" + idProgres + "&userTurn=" + userTurn);
+  buttonRequest.open("GET", "/ingame/scriptdb?idProgres=" + idProgres + "&userTurn=" + userTurn);
   buttonRequest.send();
 
 };
@@ -161,7 +161,7 @@ function pressA() {
   })
 
 
-  pressARequest.open("GET", "/scriptdb?idProgres=" + idProgres + "&userTurn=" + userTurn);
+  pressARequest.open("GET", "/ingame/scriptdb?idProgres=" + idProgres + "&userTurn=" + userTurn);
   pressARequest.send();
 
 };
@@ -215,7 +215,7 @@ function pressB() {
     }
   })
 
-  pressBRequest.open("GET", "/scriptdb?idProgres=" + idProgres + "&userTurn=" + userTurn);
+  pressBRequest.open("GET", "/ingame/scriptdb?idProgres=" + idProgres + "&userTurn=" + userTurn);
   pressBRequest.send();
 
 };
@@ -261,7 +261,7 @@ function showNarrative() {
     }
   });
 
-  narrativeRequest.open("GET", "/scriptdb?idProgres=" + idProgres + "&userTurn=" + userTurn);
+  narrativeRequest.open("GET", "/ingame/scriptdb?idProgres=" + idProgres + "&userTurn=" + userTurn);
   narrativeRequest.send();
 
 };
@@ -357,6 +357,7 @@ function showPlayers() {
 function resetGame() {
   stopLoop = true;
   // control turnos y rondas
+  playerTurn = 0;
   roundsDone = 0;
   turnsDone = 0;
   // control del camino elegido
