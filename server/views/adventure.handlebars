@@ -1,21 +1,82 @@
 <div class="container">
   {{#if adventure}}
 
-    <h3>Aventura: #{{adventure.id}}</h3>
+  <section class="showAdventure">
 
-    <ul class="detalles">
-      <li>  <img src="/img/{{adventure.showPic}}" alt="bosque" width="100"> </li>
-      <li>Nombre: {{adventure.name}}</li>
-      <li>Número de jugadores: {{adventure.numPlayers}}</li>
-      <li>Descripción: {{{adventure.description}}}</li>
-    </ul>
+  <h3>Aventura: #{{adventure.id}}</h3>
 
-    <button class="startButton" onclick="window.location.href = `/pages/main-page`">COMENZAR</button>
+  <ul class="detalles">
+    <li> <img src="/img/{{adventure.showPic}}" alt="bosque" width="100"> </li>
+    <li>Nombre: {{adventure.name}}</li>
+    <li>Número de jugadores: {{adventure.numPlayers}}</li>
+    <li>Descripción: {{{adventure.description}}}</li>
+  </ul>
+
+  </section>
+
+  <div class="containerSessions">
+
+    <form class="newSessionForm" action="/auth/newGameSession" method="post">
+      <input type="text" name="gameId" id="gameId" value="{{adventure.id}}" hidden>
+
+        <section class="sessionPlayers">
+          <label for="user">Jugadores</label>
+          <input type="text" name="users" id="users01" value="{{user.username}}" readonly>
+          <input type="text" name="users" id="users02">
+          <input type="text" name="users" id="users03">
+        </section>
+
+        <section class="sessionPass">
+          <label for="pass">Contraseña</label>
+          <input type="password" name="pass" id="pass">
+          <label for="confirmPass">Repetir Contraseña</label>
+          <input type="password" name="confirmPass" id="confirmPass">
+        </section>
+
+      <button id="login-btn" type="submit">Crear Sala</button>
+      
+    </form>
+
+    {{#if message}}
+    <p class="message-{{message.class}}"> {{message.text}}</p>
+    {{/if}}
+
+
+{{!-- Listado de sessiones de juego --}}
+    {{#if session}}
+
+    {{#each session}}
+
+    <div class="gameSession">
+
+      <h3>Sala de {{this.creator}} </h3>
+
+      <ul class="playersList">
+        <li>jugadores:</li>
+        {{#each this.users}}
+        <li>{{this.name}}</li>
+        {{/each}}
+      </ul>
+
+      <button class="startButton" onclick="window.location.href = `/pages/game-page/{{oid}}`">COMENZAR</button>
+
+    </div>
+
+    {{/each}}
+
+
+
+  {{else}}
+
+  <h2>No hay salas creadas</h2>
+
+  {{/if}}
+  </div>
 
   {{else}}
 
   <h2>Oops.. no se encontró la aventura.</h2>
-  
+
   <a href="/adventure/home">Volver a Home</a>
 
   {{/if}}

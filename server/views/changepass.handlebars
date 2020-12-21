@@ -1,8 +1,6 @@
 <div class="form-container">
 
-  <form action="/auth/register" method="post">
-    <label for="user">Nombre</label>
-    <input type="text" name="user" id="user">
+  <form action="/auth/changepass" method="post">
 
     <label for="pass">Contraseña</label>
     <input type="password" name="pass" id="pass">
@@ -11,7 +9,7 @@
     <input type="password" name="confirmPass" id="confirmPass">
 
 
-    <button id="login-btn" type="submit">Registrarse</button>
+    <button id="login-btn" type="submit">Confirmar</button>
 
     {{#if message}}
     <p class="message-{{message.class}}"> {{message.text}}</p>
@@ -19,6 +17,6 @@
 
   </form>
 
-  <a href="/pages/login">¿Ya tienes una cuenta?</a>
+  <a href="/adventure/home">Volver a Home</a>
 
 </div>

@@ -1,21 +1,17 @@
-  <div class="container">
-    <section class="mid-panel">
-      <section class="main-section">
-        <section id="user-action" class="show-action"></section>
-      </section>
+<div class="container">
+  <section class="main-section" id="user-action"></section>
 
-    </section>
+  <section id="buttons" class="buttons">
+    <div class="inGameButtons">
+      <p id="timer"></p>
+      <button id="A" onclick="pressA()" hidden></button>
+      <button id="B" onclick="pressB()" hidden></button>
+    </div>
 
-    <section id="buttons" class="buttons">
-      <div class="inGameButtons">
-        <p id="timer"></p>
-        <button id="A" onclick="pressA()" hidden></button>
-        <button id="B" onclick="pressB()" hidden></button>
-      </div>
+    <div class="mainButtons">
+      <button id="startbtn" onclick="Start()" hidden>Comenzar</button>
+      <button id="resetbtn" onclick="resetGame()" hidden>Terminar</button>
+    </div>
+  </section>
 
-      <div class="mainButtons">
-        <button id="startbtn" onclick="Start()" hidden>Comenzar</button>
-        <button id="resetbtn" onclick="resetGame()" hidden>Terminar</button>
-      </div>
-    </section>
-  </div>
+  <p id="OidSession" hidden>{{session.oid}}</p>

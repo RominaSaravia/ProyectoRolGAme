@@ -1,6 +1,4 @@
-const mongodb = require("mongodb");
-const mongoURL = "mongodb+srv://Romina:R25l1194s@proyectorol.rl6g4.gcp.mongodb.net/Proyecto?retryWrites=true&w=majority";
-
+const db = require("./const");
 
 /**
  * Consulta la lista de aventuras, devuelve un array de objetos o un array vacio
@@ -8,7 +6,7 @@ const mongoURL = "mongodb+srv://Romina:R25l1194s@proyectorol.rl6g4.gcp.mongodb.n
  */
 const getAll = (cbResult) => {
 
-  mongodb.MongoClient.connect(mongoURL, { useUnifiedTopology: true }, (err, client) => {
+  db.mongoClient.connect(db.dbURL, db.config , (err, client) => {
     if (err) {
       cbResult([]);
       client.close();
@@ -47,7 +45,7 @@ const getAll = (cbResult) => {
  */
 const getById = (id, cbResult) => {
 
-  mongodb.MongoClient.connect(mongoURL, { useUnifiedTopology: true }, (err, client) => {
+  db.mongoClient.connect(db.dbURL, db.config, (err, client) => {
     if (err) {
       cbResult(undefined);
       client.close();

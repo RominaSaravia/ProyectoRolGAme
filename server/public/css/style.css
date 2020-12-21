@@ -1,121 +1,95 @@
-*{
-  box-sizing: border-box; 
-  margin: 0; 
-  padding: 0;
-  font-family: monospace;
-}
-
-.container { width: 100%; }
-
-.navBar{
-  padding: 1.5rem;
-  background-color: rgb(187, 140, 250);
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-ul{ list-style: none; }
-
-a {
-  text-decoration: none;
-  color: #000000;
-}
-
-.navList {
-  display: flex;
-  justify-content: space-around;
-}
-
-.navList li {
-  padding: 0 1rem;
-  font-size: 1.2rem;
-}
-
-.navBar h2 {
-  font-family: monospace;
-  font-size: 2rem;
-  font-weight: 500;
-  color: rgb(242, 231, 255);
-
-}
-
-.mid-panel {
-  display: flex;
-  width: 100%;
-}
-
 .main-section{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: center;
-	align-items: stretch;
-	align-content: stretch;
+	align-items: center;
+	align-content: center;
+  
   background-color: rgb(255, 255, 255);
   width: 100%;
-}
-
-.show-action{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  align-items: stretch;
   height: 78vh;
-/*Config Scroll*/
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  overflow-y: auto;
 }
 
-.action-dialog {
-  padding: 0.5rem 1rem;
-  margin: 1rem 1rem;
-  color: rgb(117, 10, 136);
-  font-size: 1.3rem;
-  font-size: 600;
-  scroll-snap-align: start;
-  background-color: rgba(215, 172, 255, 0.445);
+.userTurn {
+  margin: auto;
+  padding: 2rem;
+  width: 80%;
+  border-radius: 1rem;
+
+  text-align: center;
+  color: #ffffff;
+  font-size: 1.5rem;
+  background-color: rgb(185, 100, 255) ;
 }
+
 .browser-dialog {
-  padding: 0.5rem 1rem;
-  margin: 1rem 1rem;
-  color: rgb(95, 39, 218);
-  scroll-snap-align: start;
+  text-align: center;
   font-size: 1.3rem;
 
-  background-color: rgba(215, 172, 255, 0.445);
+  margin: 1rem auto;
+  background-color: rgb(185, 100, 255);
 }
-.player-dialog {
-  padding: 0.5rem 1rem;
-  margin: 0 0.5rem;
-  color: rgb(0, 0, 0);
-  scroll-snap-align: start;
 
-  background-color: rgba(215, 172, 255, 0.445);
+.browser-dialog h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+
 }
 
 .player-turn{
   color: black;
   padding: 0 1rem;
   margin: 0 1rem;
-  font-size: 1.2rem;
-  scroll-snap-align: start;
   background-color: rgba(215, 172, 255, 0.445);
-}
 
-.dice-result{
-  color: black;
-  padding: 0 1rem;
-  margin: 0 1rem;
+  text-align: center;
   font-size: 1.2rem;
-  scroll-snap-align: start;
-  background-color: rgba(167, 109, 221, 0.445);
+
 }
 
+.action-dialog {
+  padding: 1rem;
+  margin: 1rem 1rem;
+  color: rgb(255, 255, 255);
+  background-color: rgb(168, 75, 255);
+
+  text-align: center;
+  font-size: 1.3rem;
+  font-size: 400;
+}
+
+.dice-result-success{
+  color: rgb(255, 255, 255);
+  width: fit-content;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem auto;
+  font-size: 1.5rem;
+  font-weight: 400;
+  scroll-snap-align: start;
+  background-color: rgb(71, 223, 164);
+}
+
+.dice-result-fail{
+  color: rgb(255, 255, 255);
+  width: fit-content;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem auto;
+  font-size: 1.5rem;
+  font-weight: 400;
+  scroll-snap-align: start;
+  background-color: rgb(255, 115, 115);
+}
+
+
+
+/***** FOOTER, BOTONERA *****/
 .buttons {
+  position: fixed;
+  bottom: 0;
+
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -127,7 +101,8 @@ a {
   width: 100%;
   padding: 0.5rem 0.5rem;
   display: inline-flex;
-  background-color: rgb(187, 140, 250);
+  background: rgb(177,4,255);
+  background: linear-gradient(0deg, rgba(177,4,255,1) 0%, rgba(118,25,159,1) 84%, rgba(81,1,112,1) 100%);
 }
 
 .mainButtons {
@@ -149,10 +124,12 @@ a {
 #startbtn{
   margin: 0.5rem 0.5rem;
 }
-
+/***** RELOJ *****/
 #timer {
   font-size: 1.5rem;
+  font-weight: 500;
   padding: 0 1rem;
+  color: #ffffff;
 
 }
 

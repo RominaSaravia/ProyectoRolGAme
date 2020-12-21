@@ -99,4 +99,96 @@ authRouter.get("/logout", (req, res) => {
   res.redirect("/pages/login");
 })
 
+authRouter.post("/changepass", (req, res) => {
+  if (req.session.loggedUser) {
+    //Valido pass y confirmPass
+    if (!req.body.pass || req.body.pass !== req.body.confirmPass) {
+      req.session.message = {
+        text: "Las passwords deben ser iguales",
+        class: "failure"
+      }
+      res.redirect("/pages/changepass");
+      return;
+    }
+
+    //Procesoo de update de clave en la DB
+    auth.changepass(req.session.loggedUser.username, req.body.pass, result => {
+      if (result) {
+        req.session.message = {
+          class: "success",
+          text: "Se a cambiado la contraseña exitosamente"
+        }
+        res.redirect("/pages/login");
+
+      } else {
+        req.session.message = {
+          text: "Hubo un error, intente nuevamente",
+          class: "failure"
+        }
+        res.redirect("/pages/changepass");
+      }
+
+    });
+
+  } else {
+    res.redirect("/pages/login");
+  }
+
+
+})
+
+authRouter.post("/newGameSession", (req, res) => {
+
+  if (req.session.loggedUser) {
+
+    //valido password
+    if (!req.body.pass || req.body.pass !== req.body.confirmPass) {
+      req.session.message = {
+        text: "Las passwords deben ser iguales",
+        class: "failure"
+      }
+      res.redirect("/adventure/" + req.body.gameId);
+
+      return;
+    }
+
+    let foundPlayers = 0
+
+    req.body.users.forEach(element => {
+      if (element) {
+        foundPlayers++
+      }
+    });
+
+    //Valido que users no este vacío
+    if (foundPlayers == 0) {
+      req.session.message = {
+        text: "No hay jugadores",
+        class: "failure"
+      }
+      res.redirect("/adventure/" + req.body.gameId);
+
+      return;
+    }
+
+    auth.newGameSession(req.body.users, req.body.pass, req.body.gameId, req.session.loggedUser.username, result => {
+
+      if (result) {
+        req.session.message = {
+          text: "Se creó la sala exitosamente",
+          class: "success"
+        }
+        res.redirect("/adventure/" + req.body.gameId)
+
+      }
+
+
+    })
+
+  } else {
+    res.redirect("/pages/login");
+  }
+})
+
+
 module.exports = authRouter;

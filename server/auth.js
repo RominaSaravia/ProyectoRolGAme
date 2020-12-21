@@ -1,4 +1,4 @@
-const mongo = require("./const").mongodb;
+const db = require("./const");
 
 /**
  * 
@@ -17,7 +17,7 @@ const mongo = require("./const").mongodb;
   })
  */
 const login = (user, pass, cbResult) => {
-  mongo.mongoClient.connect(mongo.dbURL, mongo.config , (err, client) => {
+  db.mongoClient.connect(db.dbURL, db.config, (err, client) => {
     if (err) {
       // Si no me pude conectar al server, retorno el false con un mensaje apropiado para el front
       cbResult({
@@ -46,7 +46,7 @@ const login = (user, pass, cbResult) => {
             cbResult({
               user: {
                 username: foundUser.user,
-                UserGameState:foundUser.gameState
+                UserGameState: foundUser.gameState
               }
             });
           }
@@ -69,7 +69,7 @@ const login = (user, pass, cbResult) => {
  * })  
  */
 const getUser = (username, cbResult) => {
-  mongo.mongoClient.connect(mongo.dbURL, mongo.config , (err, client) => {
+  db.mongoClient.connect(db.dbURL, db.config, (err, client) => {
     if (err) {
       cbResult({
         success: false
@@ -106,7 +106,7 @@ const getUser = (username, cbResult) => {
  */
 const registerUser = (username, password, cbResult) => {
 
-  mongo.mongoClient.connect(mongo.dbURL, mongo.config , (err, client,) => {
+  db.mongoClient.connect(db.dbURL, db.config, (err, client,) => {
     if (err) {
       // Si no me pude conectar al server, retorno el false
       cbResult(false);
@@ -138,8 +138,88 @@ const registerUser = (username, password, cbResult) => {
   })
 }
 
+const changepass = (username, newPassword, cbResult) => {
+  db.mongoClient.connect(db.dbURL, db.config, (err, client,) => {
+    if (err) {
+      // Si no me pude conectar al server, retorno el false
+      cbResult(false);
+      return;
+
+    } else {
+
+      const serverDB = client.db("Proyecto");
+      const usersCollection = serverDB.collection("ConfirmUsers");
+
+      let findQuery = { user: username };
+      let updateQuery = { $set: {password: newPassword}  }
+
+      //Actualizo la clave en la DB
+      usersCollection.updateOne( findQuery , updateQuery , (err, result) => {
+        if(err) {
+          cbResult(false)
+        }else {
+          cbResult(true)
+        }
+
+        client.close();
+
+      });
+    }
+
+  })
+
+}
+
+/**
+ * Crea un objeto de session de juego
+ * @param {string} creator 
+ * @param {array} users 
+ * @param {string} password 
+ * @param {string} gameId
+ * @param {function} cbResult CallBack: function (result: boolean) 
+ */
+const newGameSession = (users, password, gameId, creator, cbResult) => {
+  db.mongoClient.connect(db.dbURL, db.config, (err, client,) => {
+    if (err) {
+      // Si no me pude conectar al server, retorno el false
+      cbResult(false);
+      return;
+
+    } else {
+
+      const serverDB = client.db("Proyecto");
+      const usersCollection = serverDB.collection("gameSessions");
+
+      const newGameSession = {
+        creator,
+        users: [
+          {name:users[0]},
+          {name:users[1]},
+          {name:users[2]}
+        ],
+        password,
+        gameId
+      };
+
+      usersCollection.insertOne(newGameSession, (err, result) => {
+        if (err) {
+          cbResult(false);
+
+        } else {
+          cbResult(true)
+        }
+
+        client.close();
+
+      })
+    }
+  })
+}
+
 module.exports = {
-  login: login,
-  getUser: getUser,
-  registerUser: registerUser
+  login,
+  getUser,
+  registerUser,
+  changepass,
+  newGameSession
 }

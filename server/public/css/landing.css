@@ -11,7 +11,8 @@
 
 .banner {
   padding: 1.5rem;
-  background-color: rgb(187, 140, 250);
+  background: rgb(177,4,255);
+  background: linear-gradient(180deg, rgba(177,4,255,1) 0%, rgba(118,25,159,1) 84%, rgba(81,1,112,1) 100%);
 }
 
 .banner h2 {
@@ -22,7 +23,7 @@
 
 }
 
-.login-input {
+.form-container {
   background-color:rgb(200, 166, 235);
   position: relative;
   border: 5px solid rgb(189, 138, 240) ;
@@ -49,7 +50,7 @@ label{
   margin: 0.5rem 0;
 }
 
-input[type=submit]{
+button[type=submit]{
   font-size: 1rem;
   cursor: pointer;
   margin: 1rem auto;
@@ -79,7 +80,6 @@ input[type=submit]{
 }
 
 .signUpLink {
-
   text-align: center;
   margin: 1rem auto;
   color: blue;
@@ -87,6 +87,8 @@ input[type=submit]{
 }
 
 a{
+  text-decoration: none;
+  color: #000000;
   padding: 1rem 0 ;
   display: block;
   text-align: center;

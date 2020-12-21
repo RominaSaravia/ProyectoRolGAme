@@ -1,21 +1,18 @@
-const mongodb = require("mongodb");
-const mongoURL = "mongodb+srv://Romina:R25l1194s@proyectorol.rl6g4.gcp.mongodb.net/Proyecto?retryWrites=true&w=majority";
-const mongoConfig = { useUnifiedTopology: true };
+const db = require("./const");
 
-
-const getGameScript = (cbResult) => {
-  mongodb.MongoClient.connect(mongoURL , mongoConfig , (err,client) => {
+const getGameScript = cbResult => {
+  db.mongoClient.connect(db.dbURL, db.config, (err, client) => {
     if (err) {
       cbResult(undefined)
       client.close()
-    }else {
+    } else {
       const serverGame = client.db("Proyecto");
       const userCollection = serverGame.collection("gameData");
 
       userCollection.find().toArray((err, AllData) => {
-        if(err){
+        if (err) {
           cbResult(undefined)
-        }else {
+        } else {
           cbResult(AllData);
         }
         client.close();
@@ -29,24 +26,23 @@ const getGameScript = (cbResult) => {
  * Devuelve toda la lista de usarios registrados
  * @param {function} cbResult 
  */
-const getAll = (cbResult) => {
-  mongodb.MongoClient.connect(mongoURL, mongoConfig , (err,client) => {
+const getAll = cbResult => {
+  db.mongoClient.connect(db.dbURL, db.config, (err, client) => {
     if (err) {
       cbResult([]);
       client.close();
-    }else {
+    } else {
       const serverGame = client.db("Proyecto");
       const userCollection = serverGame.collection("ConfirmUsers");
 
       userCollection.find().toArray((err, personList) => {
-        if(err) {
-          console.log(`ERROR: ${err}`)
-          cbResult([]);          
-        }else {
+        if (err) {
+          cbResult([]);
+        } else {
           cbResult(personList);
-          
+
         }
-        
+
         client.close();
       });
     }
@@ -54,18 +50,18 @@ const getAll = (cbResult) => {
 }
 
 const getById = (id, cbResult) => {
-  mongodb.MongoClient.connect(mongoURL , mongoConfig , (err,client) => {
+  db.mongoClient.connect(db.dbURL, db.config, (err, client) => {
     if (err) {
       cbResult(undefined);
       client.close();
-    }else {
+    } else {
       const serverGame = client.db("Proyecto");
       const userCollection = serverGame.collection("ConfirmUsers");
 
-      userCollection.findOne( {id: id}, (err, user) => {
+      userCollection.findOne({ id: id }, (err, user) => {
         if (err) {
           cbResult(undefined);
-        }else{
+        } else {
           cbResult(user);
         }
         client.close();
@@ -73,6 +69,47 @@ const getById = (id, cbResult) => {
     };
   });
 };
+
+
+
+const getAllGameSessions = (nameFilter, cbResult) => {
+  db.mongoClient.connect(db.dbURL, db.config, (err, client) => {
+    if (err) {
+      cbResult([]);
+      client.close();
+
+    } else {
+      const serverGame = client.db("Proyecto");
+      const userCollection = serverGame.collection("gameSessions");
+
+      const filter = {}
+
+      if (nameFilter) {
+        filter.gameId = nameFilter;
+      }
+
+      userCollection.find(filter).toArray((err, gameSessionList) => {
+        if (err) {
+          cbResult([]);
+        } else {
+          gameSessionList = gameSessionList.map(session => ({
+            oid: session._id.toString(),
+            creator: session.creator,
+            users: session.users,
+            password: session.password,
+            gameId: session.gameId
+          }));
+
+          cbResult(gameSessionList);
+
+        }
+
+        client.close();
+      });
+    }
+  });
+
+}
 
 
 /**
@@ -88,21 +125,28 @@ const getById = (id, cbResult) => {
  * })
  */
 const getGameSession = (idSession, cbResult) => {
-  mongodb.MongoClient.connect(mongoURL , mongoConfig , (err,client) => {
+  db.mongoClient.connect(db.dbURL, db.config, (err, client) => {
     if (err) {
       cbResult(undefined);
       client.close();
-    }else {
+    } else {
       const serverGame = client.db("Proyecto");
       const userCollection = serverGame.collection("gameSessions");
 
-      userCollection.findOne( {idSession: idSession}, (err, gameSession) => {
+      userCollection.findOne({ _id: new db.mongodb.ObjectID(idSession) }, (err, gameSession) => {
         if (err) {
-          
           cbResult(undefined);
-        }else{
-          
-          cbResult(gameSession);
+
+        } else {
+          console.log("Volvio la respuesta")
+          console.log(gameSession)
+          cbResult({
+            oid: gameSession._id.toString(),
+            creator:gameSession.creator,
+            users: gameSession.users,
+            password: gameSession.password,
+            gameId:gameSession.gameId
+          });
         }
         client.close();
       });
@@ -111,54 +155,11 @@ const getGameSession = (idSession, cbResult) => {
 };
 
 
-/**
- * Crea un objeto de session de juego
- * @param {string} username 
- * @param {string} password 
- * @param {string} nameSession 
- * @param {function} cbResult CallBack: function (result: boolean) 
- */
-const newGameSession = (username, password,nameSession, cbResult) => {
+module.exports = {
+  getAll,
+  getById,
+  getGameScript,
+  getAllGameSessions,
+  getGameSession,
 
-  mongo.mongoClient.connect(mongo.dbURL, mongo.config , (err, client,) => {
-    if (err) {
-      // Si no me pude conectar al server, retorno el false
-      cbResult(false);
-      return;
-
-    } else {
-
-      const serverDB = client.db("Proyecto");
-      const usersCollection = serverDB.collection("gameSessions");
-
-      const newSession = {
-        idSession:nameSession,
-        gameState: "0A",
-        usersPlaying: [username],
-        password: password
-      };
-
-      usersCollection.insertOne(newUser, (err, result) => {
-        if (err) {
-          cbResult(false);
-
-        } else {
-          cbResult(true)
-        }
-
-        client.close();
-
-      })
-    }
-  })
-}
-
-
- module.exports = { 
-   getAll,
-   getById,
-   getGameScript,
-   getGameSession,
-   newGameSession
-   
-  };
+};

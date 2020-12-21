@@ -4,7 +4,7 @@ const getData = require("../useData.js");
 
 const ingameRouter = express.Router();
 
-// endpoint Get a MONGO ATLAS consulta: userList.json
+// Get a la DB consulta: lista de usuarios
 ingameRouter.get("/users", (req, res) => {
   getData.getAll(personList => {
     res.send(personList)
@@ -12,24 +12,27 @@ ingameRouter.get("/users", (req, res) => {
 
 });
 
-//Get a game-session devuelve el objeto gameSession
-ingameRouter.get("/game-session", (req,res) => {
+//Consulta el objeto gameSession
+ingameRouter.get("/game-session", (req, res) => {
+  console.log({id: req.query.idSession})
 
-  if(req.query.idSession) {
+  if (req.query.idSession) {
     getData.getGameSession(req.query.idSession, cbResponse => {
+      console.log("callback" + cbResponse)
       res.send(cbResponse)
     })
 
-  }else{
+  } else {
+    console.log("No hay IdSession")
     res.sendStatus(500);
   }
 
 })
 
 //Verifica los userProgress
-ingameRouter.get("/usersProgress", (req,res) => {
+ingameRouter.get("/usersProgress", (req, res) => {
   //Con la lista de usuario jugando hago un filtro
-  if(req.query.usersPlaying) {
+  if (req.query.usersPlaying) {
     getData.getAll()
 
   }
@@ -37,7 +40,7 @@ ingameRouter.get("/usersProgress", (req,res) => {
 })
 
 
-//Endpoint GET a MONGO ATLAS consulta: script.json
+//GET a  la DB consulta: script.json
 ingameRouter.get("/scriptdb", (req, res) => {
 
   getData.getGameScript(gameScript => {
@@ -47,12 +50,12 @@ ingameRouter.get("/scriptdb", (req, res) => {
     } else {
 
       //Verifica quien puede jugar, si el userTurno coincide con el req.session.username permite jugar
-      if(req.query.userTurn == req.session.loggedUser.username) {
+      if (req.query.userTurn == req.session.loggedUser.username) {
         req.session.userProgress = req.query.idProgres
-        console.log(req.session.userProgress);
+
         res.json(gameScript.find(item => item.id.includes(req.query.idProgres)));
 
-      }else {
+      } else {
         res.send({});
 
       }

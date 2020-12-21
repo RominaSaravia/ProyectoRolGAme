@@ -1,4 +1,4 @@
-<div class="login-input">
+<div class="form-container">
 
   <form action="/auth/login" method="post">
     <label for="user">Nombre</label>
@@ -7,14 +7,14 @@
     <label for="pass">Contraseña</label>
     <input type="password" name="pass" id="pass">
 
-    <input type="submit" value="Log In">
+    <button id="login-btn" type="submit">Login</button>
 
-    {{#if msg}}
+    {{#if message}}
     <p class="message-{{message.class}}"> {{message.text}}</p>
     {{/if}}
 
   </form>
   
-  <a  href="/pages/signup">¿No tienes una cuenta?</a>
+  <a href="/pages/signup">¿No tienes una cuenta?</a>
 
 </div>

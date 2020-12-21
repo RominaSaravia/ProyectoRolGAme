@@ -6,12 +6,13 @@
 }
 
 .container {
-  padding: 1rem;
+  width: 100%;
 }
 
 .navBar{
   padding: 1.5rem;
-  background-color: rgb(187, 140, 250);
+  background: rgb(177,4,255);
+  background: linear-gradient(180deg, rgba(177,4,255,1) 0%, rgba(118,25,159,1) 84%, rgba(81,1,112,1) 100%);
 
   display: flex;
   justify-content: space-between;
@@ -22,14 +23,15 @@
   font-family: monospace;
   font-size: 2rem;
   font-weight: 500;
-  color: rgb(242, 231, 255);
+  color: rgb(255, 255, 255);
 }
 
 ul{ list-style: none; }
 
 a {
   text-decoration: none;
-  color: #000000;
+  color: rgb(255, 255, 255);
+
 }
 
 .navList {
@@ -38,7 +40,9 @@ a {
 }
 .navList li {
   padding: 0 1rem;
+  text-decoration: none;
   font-size: 1.2rem;
+  color: rgb(255, 255, 255);
 }
 
 .buttonHome {
@@ -136,8 +140,104 @@ a {
   margin: 1rem 0;
 }
 
+.showAdventure{
+  padding: 2rem;
+}
+
+/* formulario creacion de nueva sala/sesion de juego */
+
+
+.newSessionForm{
+  width: 90%;
+  padding: 1rem 2rem;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+  align-content: center;
+  border-radius: 1rem;
+  background-color:rgb(128, 39, 212) ;
+
+}
+
+.sessionPlayers{
+  display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+  align-content: center;
+
+}
+
+.sessionPass{
+  width: 40%;
+  display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+  align-content: center;
+
+}
+
+.newSessionForm button {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: rgb(205, 151, 255);
+
+}
+
+.newSessionForm input {
+  margin-bottom: 0.5rem;
+}
+
+.containerSessions{
+  width: 100%;
+  padding: 1rem;
+
+  display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+  align-content: center;
+  
+}
+
+.gameSession {
+  width: 90%;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+  align-content: center;
+  
+  margin: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background-color:rgb(179, 100, 253) ;
+}
+
+.playersList{
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	align-content: center;
+
+}
+
+.playersList li {
+  margin: 0.5rem;
+}
+
 .startButton {
-  margin: 2rem 1rem;
+  margin: 1rem;
   padding: 1rem;
   border-radius: 1rem;
   border: none;

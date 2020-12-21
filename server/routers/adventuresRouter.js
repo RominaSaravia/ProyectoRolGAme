@@ -1,5 +1,6 @@
 const express = require("express");
 const adventures = require("../adventures.js");
+const getData = require("../useData.js");
 
 const adventureRouter = express.Router();
 
@@ -25,11 +26,18 @@ adventureRouter.get("/:id", (req, res) => {
 
   if (req.session.loggedUser) {
     adventures.getById(req.params.id, cbResponse => {
-      res.render("adventure", {
-        layout: "logged",
-        user: req.session.loggedUser,
-        adventure: cbResponse
-      });
+
+      getData.getAllGameSessions(req.params.id, allGameSessions => {
+
+        res.render("adventure", {
+          layout: "logged",
+          user: req.session.loggedUser,
+          adventure: cbResponse,
+          session: allGameSessions
+        });
+
+      })
+
 
     })
 
