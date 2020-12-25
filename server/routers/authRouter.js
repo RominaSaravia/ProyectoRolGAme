@@ -152,25 +152,6 @@ authRouter.post("/newGameSession", (req, res) => {
       return;
     }
 
-    let foundPlayers = 0
-
-    req.body.users.forEach(element => {
-      if (element) {
-        foundPlayers++
-      }
-    });
-
-    //Valido que users no este vacío
-    if (foundPlayers == 0) {
-      req.session.message = {
-        text: "No hay jugadores",
-        class: "failure"
-      }
-      res.redirect("/adventure/" + req.body.gameId);
-
-      return;
-    }
-
     auth.newGameSession(req.body.users, req.body.pass, req.body.gameId, req.session.loggedUser.username, result => {
 
       if (result) {

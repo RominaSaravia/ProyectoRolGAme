@@ -38,7 +38,7 @@ app.engine("handlebars", exphbs({
 //LANDING
 app.get("/", (req, res) => {
   if (req.session.loggedUser) {
-    res.redirect("home");
+    res.redirect("/adventure/home");
   } else {
     res.redirect("/pages/login");
   }

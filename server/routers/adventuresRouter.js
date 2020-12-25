@@ -28,12 +28,15 @@ adventureRouter.get("/:id", (req, res) => {
     adventures.getById(req.params.id, cbResponse => {
 
       getData.getAllGameSessions(req.params.id, allGameSessions => {
-
         res.render("adventure", {
           layout: "logged",
           user: req.session.loggedUser,
+          message: req.session.message,
           adventure: cbResponse,
           session: allGameSessions
+        }, (err, html) => {
+          req.session.message = undefined;
+          res.send(html);
         });
 
       })

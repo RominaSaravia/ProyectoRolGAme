@@ -237,10 +237,32 @@ a {
 }
 
 .startButton {
-  margin: 1rem;
+  margin: 1rem  0.5rem;
   padding: 1rem;
   border-radius: 1rem;
   border: none;
-  background-color: rgb(205, 151, 255);
+  color: #ffffff;
+  background-color: rgb(69, 6, 128);
 
+}
+
+/* Mensagges  al usuario*/
+.message-failure {
+  width: 90%;
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  background-color: rgb(250, 110, 110);
+  color: rgb(112, 11, 11);
+  margin: 0.5rem auto;
+}
+
+.message-success {
+  width: 90%;
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  background-color: rgb(126, 250, 110);
+  color: rgb(16, 82, 4);
+  margin: 0.5rem auto;
 }

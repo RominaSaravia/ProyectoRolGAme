@@ -40,18 +40,13 @@ pagesRouter.get("/game-page/:id", (req, res) => {
   if (req.session.loggedUser) {
 
     getData.getGameSession(req.params.id, sessionItem => {
-      console.log("renderizando mainGame")
       res.render("mainGame", {
         layout: "main",
         session: sessionItem,
         user: req.session.loggedUser
 
       })
-
-
     })
-
-
   } else {
     res.redirect("/pages/login")
   }

@@ -193,9 +193,9 @@ const newGameSession = (users, password, gameId, creator, cbResult) => {
       const newGameSession = {
         creator,
         users: [
-          {name:users[0]},
-          {name:users[1]},
-          {name:users[2]}
+          {name:users[0], progresId: '0A'},
+          {name:users[1], progresId: '0A'},
+          {name:users[2], progresId: '0A'}
         ],
         password,
         gameId

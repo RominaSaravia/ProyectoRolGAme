@@ -1,12 +1,13 @@
 const express = require("express");
 
 const getData = require("../useData.js");
+const user = require("../user");
 
 const ingameRouter = express.Router();
 
 // Get a la DB consulta: lista de usuarios
 ingameRouter.get("/users", (req, res) => {
-  getData.getAll(personList => {
+  user.getAll(personList => {
     res.send(personList)
   });
 
@@ -14,39 +15,60 @@ ingameRouter.get("/users", (req, res) => {
 
 //Consulta el objeto gameSession
 ingameRouter.get("/game-session", (req, res) => {
-  console.log({id: req.query.idSession})
-
   if (req.query.idSession) {
     getData.getGameSession(req.query.idSession, cbResponse => {
-      console.log("callback" + cbResponse)
       res.send(cbResponse)
     })
 
   } else {
-    console.log("No hay IdSession")
-    res.sendStatus(500);
+    res.sendStatus(403);
   }
 
 })
 
-//Verifica los userProgress
-ingameRouter.get("/usersProgress", (req, res) => {
-  //Con la lista de usuario jugando hago un filtro
-  if (req.query.usersPlaying) {
-    getData.getAll()
+//Update a la DB de gameState
+ingameRouter.post("/usersProgres", (req, res) => {
+  if (req.body.userTurn == req.session.loggedUser.username) {
+    getData.updateUsergameProgress(req.session.loggedUser.username, req.body.idProgres, result => {
+      if (result) {
+        res.send("Se hizo el cambio exitosamente")
+
+      } else {
+        res.sendStatus(404);
+      }
+
+    })
+
+  } else {
+    res.send(403);
 
   }
 
 })
 
+//Consulta el userProgress
+ingameRouter.get("/usersProgres", (req, res) => {
 
-//GET a  la DB consulta: script.json
+  if (req.query.userTurn == req.session.loggedUser.username) {
+    user.getByName(req.session.loggedUser.username, result => {
+      res.send(result.gameState)
+
+    })
+
+  } else {
+    res.send();
+  }
+
+})
+
+
+//GET a la DB consulta: script.json
 ingameRouter.get("/scriptdb", (req, res) => {
 
   getData.getGameScript(gameScript => {
     // Una vez que llegaron los datos como parámetro se realiza un filtro
     if (!req.query.idProgres || !req.query.userTurn) {
-      res.sendStatus(403);
+      res.send();
     } else {
 
       //Verifica quien puede jugar, si el userTurno coincide con el req.session.username permite jugar
