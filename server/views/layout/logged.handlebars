@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sitio test</title>
+  <title>RolGame</title>
   <link rel="stylesheet" href="/css/styleLogged.css">
 </head>
 
@@ -15,10 +15,8 @@
       <h2>Elige tu aventura </h2>
 
       <ul class="navList">
+        <li> <p>Hola, {{user.username}}</p> </li>
         <li> <a href="/adventure/home">HOME</a> </li>
-        <li>
-          <p>{{user.username}}</p>
-        </li>
         <li> <a href="/auth/logout"> Cerrar Session </a> </li>
         <li> <a href="/pages/changepass"> Cambiar contraseña </a> </li>
       </ul>
