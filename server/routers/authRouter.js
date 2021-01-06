@@ -1,5 +1,6 @@
 const express = require("express");
 const auth = require("../auth.js");
+const getData = require("../useData.js");
 
 const authRouter = express.Router()
 
@@ -147,19 +148,19 @@ authRouter.post("/newGameSession", (req, res) => {
         text: "Las passwords deben ser iguales",
         class: "failure"
       }
-      res.redirect("/adventure/" + req.body.gameId);
+      res.redirect("/adventure/" + req.body.adventureId);
 
       return;
     }
 
-    auth.newGameSession(req.body.users, req.body.pass, req.body.gameId, req.session.loggedUser.username, result => {
+    auth.newGameSession(req.body.users, req.body.pass, req.body.adventureId, req.session.loggedUser.username, result => {
 
       if (result) {
         req.session.message = {
           text: "Se creó la sala exitosamente",
           class: "success"
         }
-        res.redirect("/adventure/" + req.body.gameId)
+        res.redirect("/adventure/" + req.body.adventureId)
 
       }
 
@@ -168,6 +169,36 @@ authRouter.post("/newGameSession", (req, res) => {
 
   } else {
     res.redirect("/pages/login");
+  }
+})
+
+authRouter.post("/startGame", (req, res) => {
+  if (req.session.loggedUser) {
+
+    getData.getGameSession(req.body.gameoid, cbResult => {
+      if (cbResult) {
+        if (cbResult.password == req.body.sessionPass) {
+
+          res.redirect("/pages/game-page/" + cbResult.oid)
+
+        } else {
+          req.session.message = {
+            text: "Password invalida",
+            class: "failure"
+          }
+          res.redirect("/adventure/" + req.body.gameId)
+        }
+      }else {
+        req.session.message = {
+          text: "Hubo un error, lo sentimos",
+          class: "failure"
+        }
+        res.redirect("/adventure/" + req.body.gameId)
+
+
+      }
+
+    })
   }
 })
 

@@ -65,7 +65,7 @@ ingameRouter.get("/usersProgres", (req, res) => {
 //GET a la DB consulta: script.json
 ingameRouter.get("/scriptdb", (req, res) => {
 
-  getData.getGameScript(gameScript => {
+  getData.getGameScript(req.query.gameId , gameData => {
     // Una vez que llegaron los datos como parámetro se realiza un filtro
     if (!req.query.idProgres || !req.query.userTurn) {
       res.send();
@@ -74,6 +74,8 @@ ingameRouter.get("/scriptdb", (req, res) => {
       //Verifica quien puede jugar, si el userTurno coincide con el req.session.username permite jugar
       if (req.query.userTurn == req.session.loggedUser.username) {
         req.session.userProgress = req.query.idProgres
+
+        gameScript = gameData.script;
 
         res.json(gameScript.find(item => item.id.includes(req.query.idProgres)));
 

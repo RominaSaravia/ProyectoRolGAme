@@ -20,7 +20,7 @@
 
 
     <form class="newSessionForm" action="/auth/newGameSession" method="post">
-      <input type="text" name="gameId" id="gameId" value="{{adventure.id}}" hidden>
+      <input type="text" name="adventureId" id="adventureId" value="{{adventure.id}}" hidden>
 
       <section class="sessionPlayers">
         <label for="user">Jugadores</label>
@@ -56,13 +56,23 @@
         {{/each}}
       </ul>
 
-      <button class="startButton" onclick="window.location.href = `/pages/game-page/{{oid}}`">COMENZAR</button>
+      <form class="startGame" action="/auth/startGame" method="post">
+
+        <input type="text" name="gameoid" id="gameoid" value="{{this.oid}}" hidden>
+        <input type="text" name="gameId" id="gameId" value="{{this.gameId}}" hidden>
+
+        <section>
+          <label for="pass">Contraseña</label>
+          <input type="password" name="sessionPass" id="sessionPass">
+        </section>
+
+        <button class="startButton" id="startButton" type="submit">COMENZAR</button>
+
+      </form>
 
     </div>
 
     {{/each}}
-
-
 
     {{else}}
 

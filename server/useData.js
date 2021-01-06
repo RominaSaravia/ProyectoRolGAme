@@ -1,15 +1,15 @@
 const db = require("./const");
 
-const getGameScript = cbResult => {
+const getGameScript = (gameId , cbResult) => {
   db.mongoClient.connect(db.dbURL, db.config, (err, client) => {
     if (err) {
       cbResult(undefined)
       client.close()
     } else {
       const serverGame = client.db("Proyecto");
-      const userCollection = serverGame.collection("gameData");
+      const userCollection = serverGame.collection("allGamesScript");
 
-      userCollection.find().toArray((err, AllData) => {
+      userCollection.findOne({id: gameId}, (err, AllData) => {
         if (err) {
           cbResult(undefined)
         } else {

@@ -27,6 +27,7 @@ const playList = document.getElementById("usersPlaying");
 const playPanel = document.getElementById("show-players");
 const userAction = document.getElementById("user-action");
 const session = document.getElementById("OidSession");
+const gameId = document.getElementById("gameId");
 
 
 const newOptionA = document.getElementById("A");

@@ -42,31 +42,35 @@ function buttonDisplay() {
                 let response = JSON.parse(this.responseText);
 
                 // Verifico si el camino es un ending
-                if (userStage.gameFinal === true) {
+                if (response.gameFinal === true) {
                   newOptionA.hidden = true;
                   newOptionB.hidden = true;
-                  const newDialog = document.createElement("div");
-                  newDialog.innerHTML = userStage.finalText;
-                  newDialog.classList.add("action-dialog")
-                  userAction.appendChild(newDialog);
-                  return;
+
+                  showNarrative(true, response.finalText);
+
+                } else {
+
+                  if (newOptionA.hidden === true && newOptionB.hidden === true) {
+                    newOptionA.hidden = false;
+                    newOptionB.hidden = false;
+                  };
+  
+                  newOptionA.textContent = response.optionA;
+                  newOptionB.textContent = response.optionB;
+  
+                  showNarrative(false, response.narrative);
+
                 }
 
-                if (newOptionA.hidden === true && newOptionB.hidden === true) {
-                  newOptionA.hidden = false;
-                  newOptionB.hidden = false;
-                };
-
-                newOptionA.textContent = response.optionA;
-                newOptionB.textContent = response.optionB;
-
-                showNarrative(response.narrative);
 
               }
 
             });
 
-            buttonRequest.open("GET", "/ingame/scriptdb?idProgres=" + userStage + "&userTurn=" + userTurn);
+            console.log( "/ingame/scriptdb?gameId=" + gameId.textContent + "&idProgres=" + idProgres + "&userTurn=" + userTurn )
+
+
+            buttonRequest.open("GET", "/ingame/scriptdb?gameId=" + gameId.textContent + "&idProgres=" + idProgres + "&userTurn=" + userTurn);
             buttonRequest.send();
 
           }
@@ -125,7 +129,7 @@ function pressA() {
           if (randNum > 3) {
             //Se muestra la respueta en pantalla
             const newDialog = document.createElement("p");
-            newDialog.textContent = userStage.dialogASuccess;
+            newDialog.textContent = userStage.dialogSuccess;
             newDialog.classList.add("action-dialog")
             dialogContainer.appendChild(newDialog);
 
@@ -136,7 +140,7 @@ function pressA() {
           } else {
             //Se muestra la respueta en pantalla
             const newDialog = document.createElement("p");
-            newDialog.textContent = userStage.dialogAFail;
+            newDialog.textContent = userStage.dialogFail;
             newDialog.classList.add("action-dialog")
             dialogContainer.appendChild(newDialog);
 
@@ -173,7 +177,7 @@ function pressA() {
       })
 
 
-      pressARequest.open("GET", "/ingame/scriptdb?idProgres=" + idProgres + "&userTurn=" + userTurn);
+      pressARequest.open("GET", "/ingame/scriptdb?gameId=" + gameId.textContent + "&idProgres=" + idProgres + "&userTurn=" + userTurn);
       pressARequest.send();
 
 
@@ -226,7 +230,7 @@ function pressB() {
           if (randNum > 3) {
             //Se muestra la respueta en pantalla
             const newDialog = document.createElement("p");
-            newDialog.textContent = userStage.dialogBSuccess;
+            newDialog.textContent = userStage.dialogSuccess;
             newDialog.classList.add("action-dialog")
             dialogContainer.appendChild(newDialog);
 
@@ -237,7 +241,7 @@ function pressB() {
           } else {
             //Se muestra la respueta en pantalla
             const newDialog = document.createElement("p");
-            newDialog.textContent = userStage.dialogBFail;
+            newDialog.textContent = userStage.dialogFail;
             newDialog.classList.add("action-dialog")
             dialogContainer.appendChild(newDialog);
 
@@ -272,7 +276,7 @@ function pressB() {
         }
       })
 
-      pressBRequest.open("GET", "/ingame/scriptdb?idProgres=" + idProgres + "&userTurn=" + userTurn);
+      pressBRequest.open("GET", "/ingame/scriptdb?gameId=" + gameId.textContent + "&idProgres=" + idProgres + "&userTurn=" + userTurn);
       pressBRequest.send();
 
     }
@@ -287,19 +291,37 @@ function pressB() {
 };
 
 
-function showNarrative(narrative) {
+function showNarrative(ending , narrative) {
   //Borra el dialogo anterior
   userAction.innerHTML = "";
-  
-  const showUserTurn = document.createElement("div");
-  showUserTurn.classList.add("userTurn")
-  showUserTurn.innerHTML = `¿Cuál será tu decisión?`;
-  userAction.appendChild(showUserTurn);
 
-  const newDialog = document.createElement("div");
-  newDialog.classList.add("browser-dialog")
-  newDialog.id = "dialog-container";
-  newDialog.innerHTML = narrative;
-  showUserTurn.appendChild(newDialog);
+  if (ending) {
+    const showUserTurn = document.createElement("div");
+    showUserTurn.classList.add("userTurn")
+    showUserTurn.innerHTML = `Final`;
+    userAction.appendChild(showUserTurn);
+  
+    const newDialog = document.createElement("div");
+    newDialog.classList.add("browser-dialog")
+    newDialog.id = "dialog-container";
+    newDialog.innerHTML = narrative;
+    showUserTurn.appendChild(newDialog);
+    
+  }else {
+    const showUserTurn = document.createElement("div");
+    showUserTurn.classList.add("userTurn")
+    showUserTurn.innerHTML = `¿Cuál será tu decisión?`;
+    userAction.appendChild(showUserTurn);
+  
+    const newDialog = document.createElement("div");
+    newDialog.classList.add("browser-dialog")
+    newDialog.id = "dialog-container";
+    newDialog.innerHTML = narrative;
+    showUserTurn.appendChild(newDialog);
+
+  }
+  
 
 };
+
+console.log("/ingame/scriptdb?gameId=" + gameId.textContent + "&idProgres=" + idProgres + "&userTurn=" + userTurn);

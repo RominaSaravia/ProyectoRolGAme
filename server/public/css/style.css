@@ -1,3 +1,11 @@
+.gamePlaying{
+  padding:0.2rem;
+  background-color: rgb(192, 147, 212);
+  color: #fdfdfd;
+  text-align: center;
+}
+
+
 .main-section{
 	display: flex;
 	flex-direction: row;

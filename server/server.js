@@ -1,8 +1,8 @@
+const PORT = 4444;
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const exphbs = require("express-handlebars");
-const PORT = 4444;
 const expSession = require("express-session");
 
 const authRouter = require("./routers/authRouter");

@@ -216,6 +216,7 @@ const newGameSession = (users, password, gameId, creator, cbResult) => {
   })
 }
 
+
 module.exports = {
   login,
   getUser,
